@@ -345,3 +345,70 @@ section {
 .search__content-input::placeholder {
   color: #656464;
 }
+
+.categories__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.categories__item {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  max-width: 370px;
+  margin-bottom: 30px;
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  padding: 20px 20px 16px;
+  transition: all 0.3s;
+}
+
+.categories__item:hover .categories__item-title {
+  color: #1c62cd;
+}
+
+.categories__item:hover {
+  box-shadow: 3px 3px 20px rgba(50, 50, 50, 0.25);
+}
+
+.categories__item-title {
+  font-family: "Barlow", sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 28px;
+  transition: all 0.3s;
+}
+
+.categories__item-small {
+  width: fit-content;
+  font-size: 14px;
+  line-height: 17px;
+  color: #c4c4c4;
+  position: relative;
+}
+
+.categories__item-small::before {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  height: 1px;
+  width: 100%;
+  background: #cdcdcd;
+}
+
+.categories__item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.categories__item-img {
+  text-align: center;
+  width: 50%;
+}
+
+.categories__item-img img {
+  max-width: 100%;
+}
