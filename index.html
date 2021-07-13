@@ -142,6 +142,68 @@
           </div>
         </div>
       </section>
+
+      <section class="search">
+        <div class="container">
+          <div class="search__inner">
+            <div class="search__tabs">
+              <button
+                class="search__tabs-item search__tabs-item--active"
+                data-tab="#tab-1"
+              >
+                Поиск по номеру
+              </button>
+              <button class="search__tabs-item" data-tab="#tab-2">
+                Поиск по марке
+              </button>
+              <button class="search__tabs-item" data-tab="#tab-3">
+                Поиск по названию товара
+              </button>
+            </div>
+            <div class="search__content">
+              <div
+                id="tab-1"
+                class="search__content-item search__content-item--active"
+              >
+                <form class="search__content-form">
+                  <input
+                    class="search__content-input"
+                    type="text"
+                    placeholder="Введите номер"
+                  />
+                  <button class="search__content-btn" type="submit">
+                    искать
+                  </button>
+                </form>
+              </div>
+              <div id="tab-2" class="search__content-item">
+                <form class="search__content-form">
+                  <input
+                    class="search__content-input"
+                    type="text"
+                    placeholder="Введите марку"
+                  />
+                  <button class="search__content-btn" type="submit">
+                    искать
+                  </button>
+                </form>
+              </div>
+              <div id="tab-3" class="search__content-item">
+                <form class="search__content-form">
+                  <input
+                    class="search__content-input"
+                    type="text"
+                    placeholder="Введите название товара"
+                  />
+                  <button class="search__content-btn" type="submit">
+                    искать
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
