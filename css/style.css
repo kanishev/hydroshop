@@ -167,7 +167,8 @@ section {
   min-height: 400px;
 }
 
-.slick-btn {
+.slick-btn,
+.product-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -185,6 +186,14 @@ section {
 
 .slick-btn__next {
   right: 20px;
+}
+
+.product-btn__prev {
+  left: -40px;
+}
+
+.product-btn__next {
+  right: -40px;
 }
 
 .slick-dots {
@@ -212,7 +221,7 @@ section {
   background-color: transparent;
 }
 
-.slick-active button {
+.slick-active li button {
   background-color: #fff;
 }
 
@@ -302,17 +311,17 @@ section {
   cursor: pointer;
 }
 
-.search__tabs-item--active {
+.search__tabs-item.tab--active {
   border-radius: 5px;
   background-color: #f0f0f0;
   font-weight: 700;
 }
 
-.search__content-item {
+.tabs-content {
   display: none;
 }
 
-.search__content-item--active {
+.tabs-content.tabs-content--active {
   display: block;
 }
 
@@ -411,4 +420,195 @@ section {
 
 .categories__item-img img {
   max-width: 100%;
+}
+
+.product-item__wrapper {
+  position: relative;
+  width: 271px;
+}
+
+.product-item {
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  min-height: 410px;
+  text-align: center;
+  padding: 52px 20px 30px;
+  width: 271px;
+}
+
+.product__title{
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  margin-bottom: 25px;
+}
+
+.products__tabs {
+  margin-bottom: 25px;
+}
+
+.product__tabs {
+  margin-bottom: 12px;
+}
+
+.products__tab.tab--active {
+  border-bottom: 2px solid #1c62cd;
+}
+
+
+.products__tab + .products__tab {
+  margin-left: 50px;
+}
+
+.product-item:hover{
+  color: #1c62cd;
+  box-shadow: 3px 3px 20px rgba(50, 50, 50, 0.25);
+}
+
+.product-item__favourite {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 24px;
+  height: 22px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 5;
+}
+
+.product-item__favourite::before{
+ content: "";
+ position: absolute;
+ width: 24px;
+ height: 22px;
+ background-image: url("../images/heart.svg");
+ top: 0;
+ left: 0;
+}
+
+.product-item__favourite--active::before{
+  background-image: url('../images/heart-active.svg');
+}
+
+.product-item__title{
+  font-weight: normal;
+  padding: 14px 0 25px;
+}
+
+.product-item__price{
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.product-item__img{
+  width: 200px;
+}
+
+.product-item__cart {
+  position: absolute;
+  width: 60px;
+  height: 40ox;
+  background:#1c62cd;
+  border-radius: 10px 0 0 0;
+  border: none;
+  bottom: 0;
+  right: 0;
+  padding-top: 7px;
+  cursor: pointer;
+}
+
+.product-item__hover-text {
+  padding: 18px 21px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.product-item:hover .product-item__hover-text{
+  opacity: 1;
+  color: #2f3035;
+}
+
+.product-item:hover .product-item__notify{
+  color: #2f3035;
+}
+
+.product-item--sale::before {
+  content: "SALE";
+  padding: 8px 15px 8px;
+  text-transform: uppercase;
+  background: #1c62cd;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.07em;
+}
+
+.product-item__notify {
+  display: none;
+}
+.product-item__wrapper.product-item__not-available .product-item__notify {
+  display: block;
+}
+
+.product-item__wrapper.product-item__not-available .product-item__price {
+  display: none;
+}
+
+.slick-slide img {
+  display: inline;
+}
+
+.product__more{
+  text-align: center;
+  margin-top: 35px;
+}
+
+.product__more-link{
+  line-height: 10px;
+  letter-spacing: 0.12em;
+  font-size: 15px;
+  text-transform: uppercase;
+  background: #f0f0f4;
+  padding: 16px 43px;
+}
+
+.banner-wrapper{
+  display: flex;
+  padding: 15px 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c62cd;
+}
+
+.banner__text{
+  max-width: 330px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 36px;
+  margin: 0 40px;
+}
+
+.banner__text span {
+  text-transform: uppercase;
+}
+
+.banner__button{
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 50px;
+  color: #2F3035;
+  padding: 5px 40px;
+  border: none;
 }
