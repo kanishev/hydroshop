@@ -822,3 +822,78 @@ button.catalog__filter-btn_line{
 .pagination-list__item a {
   display: block;
 }
+
+.aside-filter {
+
+}
+
+.aside-filter__tabs{
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside-filter__tab{
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.09em;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #c4c4c4;
+  width: 50%;
+}
+
+.aside-filter__tab.tab--active{
+  color: #2f3035;
+  font-weight: bold;
+}
+
+.aside-filter__tab.tab--active span{
+  display: inline-block;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #1c62cd;
+}
+
+.aside-filter__item-drop {
+  margin: 40px 0 ;
+}
+
+.aside-filter__item-title {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 600;
+  padding-left: 26px;
+}
+
+.filter__item-drop{
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.filter__item-drop::before{
+  content: "";
+  background-image: url('../images/arrow_down.svg');
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 12px;
+  height: 8px;
+}
+
+.filter__item-drop--active::before{
+  transform: rotate(180deg);
+}
+
+.aside-filter__content{
+  display: flex;
+}
+
+.aside-filter__content-box{
+  width: 50%;
+}
+
+.aside-filter__content-label{
+  font-size: 14px;
+  line-height: 17px;
+}

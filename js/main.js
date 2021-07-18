@@ -29,6 +29,13 @@ $(function () {
     '<button class="product-btn product-btn__prev"><img src="images/arrow-black-left.svg" alt="leftArrow"></button>',
   nextArrow:
     '<button class="product-btn product-btn__next"><img src="images/arrow-black-right.svg" alt="nextArrow"></button>',
+  });
+
+  $('.filter-style').styler()
+
+  $(".filter__item-drop").on('click', function(){
+    $(this).toggleClass('filter__item-drop--active')
+    $(this).next().slideToggle()
   })
 
 });
