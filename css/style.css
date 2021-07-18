@@ -866,7 +866,6 @@ button.catalog__filter-btn_line{
 }
 
 .filter__item-drop{
-  margin-bottom: 20px;
   position: relative;
   cursor: pointer;
 }
@@ -887,6 +886,7 @@ button.catalog__filter-btn_line{
 
 .aside-filter__content{
   display: flex;
+  margin-top: 20px;
 }
 
 .aside-filter__content-box{
@@ -896,4 +896,108 @@ button.catalog__filter-btn_line{
 .aside-filter__content-label{
   font-size: 14px;
   line-height: 17px;
+}
+
+.jq-checkbox, .jq-radio {
+  background: #fff;
+  width: 14px;
+  height: 14px;
+  border: 1x solid #c4c4c4;
+  box-shadow: none;
+  vertical-align: -1px;
+  margin: 0 8px 0 0;
+}
+.jq-checkbox.checked, .jq-radio.checked {
+  background: #1c62cd;
+  border: none;
+}
+
+.jq-checkbox.checked .jq-checkbox__div {
+  width: 8px;
+  height: 6px;
+  margin: 3px 0 0 3px;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  -webkit-transform: rotate(
+    -50deg
+    );
+        transform: rotate(
+    -50deg
+    );
+}
+
+.jq-radio.checked .jq-radio__div {
+  width: 0;
+  height: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.aside-filter__content-radio {
+  flex-wrap: wrap;
+}
+
+.irs--flat {
+  width: 100%;
+}
+
+.irs--flat .irs-from, .irs--flat .irs-to, .irs--flat .irs-single {
+  display: none;
+}
+
+.irs--flat .irs-min, .irs--flat .irs-max {
+  top: 60px;
+  padding: 0;
+  line-height: 17px;
+  color: #2f2f2f;
+  font-size: 14px;
+  text-decoration-line: underline;
+  text-shadow: none;
+  background-color: transparent;
+  border-radius: 0;
+  visibility: visible !important;
+  padding-left: 27px;
+}
+
+.irs-min::before, 
+.irs-max::before{
+  position: absolute;
+  left: 0;
+  line-height: 17px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #c4c4c4;
+}
+
+.irs-min::before {
+  content: 'от';
+}
+.irs-max::before {
+  content: 'до';
+}
+
+.irs--flat .irs-line {
+  top: 25px;
+  height: 1px;
+  background-color: #c3c3c3;
+  border-radius: 0;
+}
+
+.irs--flat .irs-bar {
+  height: 3px;
+  background-color: #1c62cd;
+}
+
+.irs--flat .irs-handle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1c62cd;
+}
+
+.irs--flat .irs-handle>i:first-child,
+.irs--flat .irs-handle.state_hover>i:first-child, .irs--flat .irs-handle:hover>i:first-child {
+  background-color: transparent;
 }

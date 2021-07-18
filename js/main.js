@@ -38,4 +38,12 @@ $(function () {
     $(this).next().slideToggle()
   })
 
+  $(".js-range-slider").ionRangeSlider({
+    type: "double",
+    min: 100000,
+    max: 500000,
+    from: 150000,
+    grid: false
+});
+   
 });
