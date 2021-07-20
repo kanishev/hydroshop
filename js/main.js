@@ -59,5 +59,11 @@ $(function () {
     from: 150000,
     grid: false
 });
+
+$('.rate-yo').rateYo({
+  ratedFill: "#1c62cd",
+  spacing: "10px",
+  normalFill: "#c4c4c4"
+})
    
 });

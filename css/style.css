@@ -1180,3 +1180,131 @@ button.catalog__filter-btn_line{
   border-bottom: 1px solid #c4c4c4;
   font-style: 13px;
 }
+
+.product-card__inner{
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card__img-box {
+  flex-basis: 40%;
+  padding-top: 64px;
+  text-align: center;
+  position: relative;
+}
+
+.product-card__content {
+  flex-basis: 47%;
+}
+
+.product-card__img{
+  width: auto;
+}
+
+.product-card__price-old {
+  line-height: 24px;
+  color: #2f3035;
+  opacity: 0.5;
+  font-style: 30px;
+  margin-bottom: 6px;
+}
+
+.product-card__price-new {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 17px;
+}
+
+.product-card__link {
+  border-bottom: 1px solid #1c62cd;
+  font-style: 15px;
+  line-height: 18px;
+  color: #1c62cd;
+}
+
+.product-card__title {
+  font-weight: bold;
+  font-style: 30px;
+  line-height: 36px;
+  margin-bottom: 10px;
+}
+
+.product-card__code{
+  font-size: 15px;
+  line-height: 15px;
+  color: #2f2f2f;
+  opacity: 0.6;
+  margin-bottom: 22px;
+}
+
+.product-card__buttons{
+  margin-bottom: 50px;
+}
+
+.product-card__buttons a {
+ margin-right: 30px;
+}
+
+.product-card__tab {
+  line-height: 24px;
+  color: #2f3035;
+  opacity: 0.6;
+  font-size: 20px;
+  padding-bottom: 5px;
+  padding-right: 17px;
+}
+
+.product-card__tab + .product-card__tab {
+  padding-left: 17px;
+}
+
+.product-card__tab.tab--active {
+  opacity: 1;
+  border-bottom: 2px solid #1c62cd;
+  font-weight: bold;
+}
+
+.product-card__item{
+  padding: 15px 0 6px;
+  border-bottom: 1px solid rgba(47, 48, 53, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card__item-left {
+  padding-right: 15px;
+}
+
+.product-card__item-right {
+  width: 125px;
+}
+
+.product-card__more {
+  font-style: 14px;
+  line-height: 17px;
+  color: #1c62cd;
+  border-bottom: 1px solid #1c62cd;
+  margin-bottom: 40px;
+}
+
+.product-card__list {
+  margin-bottom: 20px;
+}
+
+.product-card__buy{
+  font-style: 14px;
+  line-height: 17px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 16px 54px;
+  background: #1c62cd;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.product-card__buttons a {
+
+}
