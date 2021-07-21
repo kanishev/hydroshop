@@ -40,6 +40,7 @@ body {
   font-size: 20px;
   line-height: 24px;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 section {
@@ -65,8 +66,44 @@ a {
   font-weight: 700;
 }
 
+.menu-mobile__list {
+  width: 243px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%);
+  transition: all 0.5s;
+  position: absolute;
+  z-index: 10;
+  background-color: #f0f0f4;
+
+}
+
+.menu-mobile__list--active {
+  transform: translateX(0);
+}
+
+.menu-mobile__item {
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu-mobile__link {
+  display: block;
+  padding-left: 53px;
+  padding-top: 36px;
+}
+
+.menu-mobile__img {
+ position: absolute;
+ left: 11px;
+ bottom: 0;
+}
+
 .menu__item {
   display: inline-block;
+}
+
+.menu__btn{
+  display: none;
 }
 
 .menu__item + .menu__item {
