@@ -66,6 +66,10 @@ a {
   font-weight: 700;
 }
 
+.menu__mobile-line__wrapper {
+  display: none;
+}
+
 .menu-mobile__list {
   width: 243px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

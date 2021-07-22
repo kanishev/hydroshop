@@ -5,6 +5,14 @@ $(function () {
       '<button class="slick-btn slick-btn__prev"><img src="images/arrow-left.svg" alt="leftArrow"></button>',
     nextArrow:
       '<button class="slick-btn slick-btn__next"><img src="images/arrow-right.svg" alt="nextArrow"></button>',
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          arrows: false
+        }
+      }
+    ]
   });
 
   $(".tab").on("click", function (e) {
