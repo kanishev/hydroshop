@@ -267,7 +267,8 @@ a {
   background-color: transparent;
 }
 
-.slick-active li button {
+
+.slick-dots .slick-active button {
   background-color: #fff;
 }
 
@@ -410,8 +411,7 @@ a {
 .categories__item {
   display: flex;
   justify-content: space-between;
-  flex-grow: 1;
-  max-width: 370px;
+  width: 370px;
   margin-bottom: 30px;
   border: 1px solid #cdcdcd;
   border-radius: 3px;
@@ -634,8 +634,23 @@ a {
   padding: 16px 43px;
 }
 
+.product-slider .slick-dots button {
+  background-color: #c4c4c4;
+}
+
+.product-slider .slick-dots .slick-active button {
+  background-color: #1c62cd;
+}
+
+
+.product-slider .slick-dots {
+  bottom: -30px;
+}
+
 .banner-wrapper {
   display: flex;
+  text-align: center;
+  flex-wrap: wrap;
   padding: 15px 0;
   justify-content: center;
   align-items: center;

@@ -9,10 +9,10 @@ $(function () {
       {
         breakpoint: 960,
         settings: {
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   });
 
   $(".tab").on("click", function (e) {
@@ -38,6 +38,40 @@ $(function () {
       '<button class="product-btn product-btn__prev"><img src="images/arrow-black-left.svg" alt="leftArrow"></button>',
     nextArrow:
       '<button class="product-btn product-btn__next"><img src="images/arrow-black-right.svg" alt="nextArrow"></button>',
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          arrows: false,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: { 
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          dots: true,
+          arrows:false
+        },
+      },
+      {
+        breakpoint: 870,
+        settings: { 
+          slidesToShow: 2,
+          dots: true,
+          arrows:false
+        },
+      },
+      {
+        breakpoint: 590,
+        settings: { 
+          slidesToShow: 1,
+          dots: true,
+          arrows:false
+        },
+      },
+    ],
   });
 
   $(".filter-style").styler();
@@ -73,7 +107,7 @@ $(function () {
     normalFill: "#c4c4c4",
   });
 
-  $('.menu__btn').on('click', function(){
-    $('.menu-mobile__list').toggleClass('menu-mobile__list--active')
-  })
+  $(".menu__btn").on("click", function () {
+    $(".menu-mobile__list").toggleClass("menu-mobile__list--active");
+  });
 });
