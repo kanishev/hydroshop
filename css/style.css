@@ -272,6 +272,10 @@ a {
   background-color: #fff;
 }
 
+.aside__btn {
+  display: none;
+}
+
 .sale-item {
   max-width: 265px;
   text-align: center;
