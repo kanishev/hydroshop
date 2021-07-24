@@ -19,12 +19,14 @@ $(function () {
     e.preventDefault();
 
     $($(this).siblings()).removeClass("tab--active");
-    $($(this).parent().siblings().find("div")).removeClass(
+    $($(this).closest('.tabs-wrapper').siblings().find("div")).removeClass(
       "tabs-content--active"
     );
 
     $(this).addClass("tab--active");
     $($(this).attr("href")).addClass("tabs-content--active");
+
+    $('.product-slider').slick('setPosition')
   });
 
   $(".product-item__favourite").on("click", function () {
@@ -114,5 +116,9 @@ $(function () {
   $('.footer__top-drop').on('click', function(){
     $(this).next().slideToggle()
     $(this).toggleClass('footer__top-drop--active')
+  })
+
+  $('.aside__btn').on('click', function(){
+    $(this).next().slideToggle()
   })
 });
