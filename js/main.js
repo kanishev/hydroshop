@@ -2,9 +2,9 @@ $(function () {
   $(".banner-section__slider").slick({
     dots: true,
     prevArrow:
-      '<button class="slick-btn slick-btn__prev"><img src="images/arrow-left.svg" alt="leftArrow"></button>',
+      '<button class="slick-btn slick-btn__prev"><img src="images/icons/arrow-left.svg" alt="leftArrow"></button>',
     nextArrow:
-      '<button class="slick-btn slick-btn__next"><img src="images/arrow-right.svg" alt="nextArrow"></button>',
+      '<button class="slick-btn slick-btn__next"><img src="images/icons/arrow-right.svg" alt="nextArrow"></button>',
     responsive: [
       {
         breakpoint: 960,
@@ -37,9 +37,9 @@ $(function () {
     slidesToShow: 4,
     slidesToScroll: 1,
     prevArrow:
-      '<button class="product-btn product-btn__prev"><img src="images/arrow-black-left.svg" alt="leftArrow"></button>',
+      '<button class="product-btn product-btn__prev"><img src="images/icons/arrow-black-left.svg" alt="leftArrow"></button>',
     nextArrow:
-      '<button class="product-btn product-btn__next"><img src="images/arrow-black-right.svg" alt="nextArrow"></button>',
+      '<button class="product-btn product-btn__next"><img src="images/icons/arrow-black-right.svg" alt="nextArrow"></button>',
     responsive: [
       {
         breakpoint: 1300,
@@ -78,7 +78,7 @@ $(function () {
 
   $(".filter-style").styler();
 
-  $(".filter__item-drop, .filter-add").on("click", function () {
+  $(".filter__item-drop").on("click", function () {
     $(this).toggleClass("filter__item-drop--active");
     $(this).next().slideToggle();
   });
@@ -121,4 +121,5 @@ $(function () {
   $('.aside__btn').on('click', function(){
     $(this).next().slideToggle()
   })
+
 });
