@@ -4,7 +4,7 @@
   }
 
   .header__adress {
-    margin-right: 10px;
+    margin-right: 50px;
   }
 
   .banner-section__slider img {
@@ -247,6 +247,10 @@
     padding: 10px 0;
     border: none;
   }
+
+  table tbody td:last-child {
+    text-align: left;
+  }
 }
 
 @media (max-width: 640px) {
@@ -265,12 +269,11 @@
   .search__content-btn {
     font-size: 0;
     line-height: 0;
-    padding: 0;
+    padding: 0 10px;
     background-image: url("../images/loop.svg");
     width: 24px;
     height: 24px;
     background-color: transparent;
-    padding: 0 10px;
     background-repeat: no-repeat;
   }
 

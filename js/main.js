@@ -23,6 +23,15 @@ $(function () {
       "tabs-content--active"
     );
 
+    /*
+    * For Product Page
+
+     $($(this).closest(".tabs-wrapper").find("div")).removeClass(
+      "tabs-content--active"
+    );
+
+    */
+
     $(this).addClass("tab--active");
     $($(this).attr("href")).addClass("tabs-content--active");
 
@@ -83,15 +92,15 @@ $(function () {
     $(this).next().slideToggle();
   });
 
-  $(".catalog__filter-btn_line").on("click", function () {
+  $(".catalog__filter-btn--line").on("click", function () {
     $(this).addClass("catalog__filter-mode--active");
-    $(".catalog__filter-btn_grid").removeClass("catalog__filter-mode--active");
+    $(".catalog__filter-btn--grid").removeClass("catalog__filter-mode--active");
     $(".product-item__wrapper").addClass("product-item__wrapper--list");
   });
 
-  $(".catalog__filter-btn_grid").on("click", function () {
+  $(".catalog__filter-btn--grid").on("click", function () {
     $(this).addClass("catalog__filter-mode--active");
-    $(".catalog__filter-btn_line").removeClass("catalog__filter-mode--active");
+    $(".catalog__filter-btn--line").removeClass("catalog__filter-mode--active");
     $(".product-item__wrapper").removeClass("product-item__wrapper--list");
   });
 
