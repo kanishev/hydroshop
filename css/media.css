@@ -107,6 +107,16 @@
     width: max-content;
   }
 
+  .hamburger-menu {
+    display: block; 
+  } 
+
+  .hamburger-menu__btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; 
+  }
+
   .tabs-wrapper {
     overflow-x: scroll;
   }
