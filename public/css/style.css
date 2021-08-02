@@ -645,7 +645,7 @@ table td {
   letter-spacing: 0.07em;
 }
 
-.product-item__notify {
+/* .product-item__notify {
   display: none;
 }
 .product-item__wrapper.product-item__not-available .product-item__notify {
@@ -654,7 +654,7 @@ table td {
 
 .product-item__wrapper.product-item__not-available .product-item__price {
   display: none;
-}
+} */
 
 .slick-slide img {
   display: inline;

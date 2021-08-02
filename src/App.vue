@@ -3,26 +3,9 @@
     <header class="header">
       <div class="header__top">
         <div class="container">
-          <git class="header__top-inner">
-            <nav class="menu">
-              <button class="menu__btn">
-                <div class="menu__btn-line"></div>
-                <div class="menu__btn-line"></div>
-                <div class="menu__btn-line"></div>
-              </button>
+          <div class="header__top-inner">
+            <Navbar />
 
-              <ul class="menu__list">
-                <li class="menu__item">
-                  <a class="menu__link" href=""> Магазин </a>
-                </li>
-                <li class="menu__item">
-                  <a class="menu__link" href=""> Каталог </a>
-                </li>
-                <li class="menu__item">
-                  <a class="menu__link" href=""> Доставка и оплата </a>
-                </li>
-              </ul>
-            </nav>
             <a class="logo" href="#">
               <img class="logo__img" src="./assets/icons/logo.svg" alt="" />
             </a>
@@ -47,7 +30,7 @@
                 </li>
               </ul>
             </div>
-          </git>
+          </div>
         </div>
       </div>
 
@@ -189,32 +172,7 @@
 
       <div class="header__bottom">
         <div class="container">
-          <ul class="menu-categories">
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Квадроциклы</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Катера</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Гидроциклы</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Лодки</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Вездеходы</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Снегоходы</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Двигатели</a>
-            </li>
-            <li class="menu-categories__item">
-              <a class="menu-categories__link" href="#">Запчасти</a>
-            </li>
-          </ul>
+          <menu-categories></menu-categories>
         </div>
       </div>
     </header>
@@ -297,3 +255,12 @@
 
 <style>
 </style>
+
+<script>
+import Navbar from "./components/Navbar.vue";
+import MenuCategories from "./components/MenuCategories.vue";
+
+export default {
+  components: { Navbar, MenuCategories },
+};
+</script>
