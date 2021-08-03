@@ -102,6 +102,7 @@ $(function () {
     min: 100000,
     max: 500000,
     from: 150000,
+    to: 340000,
     grid: false,
   });
 
