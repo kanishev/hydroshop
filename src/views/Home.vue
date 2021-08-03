@@ -244,7 +244,7 @@ export default {
           sale: true,
         },
         {
-          title: "Водонипроницаемый рюкзак",
+          title: "Водонипроницаемый рюкзак 1",
           src: ".../../images/content/product-1.png",
           price: 98000,
           available: true,
