@@ -231,10 +231,6 @@ table td {
   right: 0;
   left: 0;
 }
-/* 
-.menu-categories__link:focus::before{
-  content: none;
-} */
 
 .banner-section__inner {
   display: flex;
@@ -457,6 +453,7 @@ table td {
   border-radius: 3px;
   padding: 20px 20px 16px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .categories__item:hover .categories__item-title {
@@ -940,9 +937,6 @@ button.catalog__filter-btn_line {
   display: block;
 }
 
-.aside-filter {
-}
-
 .aside-filter__tabs {
   display: flex;
   justify-content: space-between;
@@ -1332,7 +1326,7 @@ button.catalog__filter-btn_line {
 }
 
 .product-card__buttons {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .product-card__buttons a {
@@ -1437,9 +1431,13 @@ button.catalog__filter-btn_line {
   background: #f0f0f4;
   border-radius: 3px;
   margin-left: 17px;
-  padding: 9px 37px 9px 17px;
+  padding: 10px 30px 10px 15px;
   border: none;
   margin-right: 100px;
+}
+
+.card__input-search::placeholder {
+  font-size: 14px;
 }
 
 .card__label-pickup {

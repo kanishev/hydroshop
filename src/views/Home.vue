@@ -152,13 +152,13 @@
 </template>
 
 <script>
-import BannerSlider from "../components/BannerSlider.vue";
-import BannerSale from "../components/BannerSale.vue";
+import BannerSlider from "../components/Banner/BannerSlider.vue";
+import BannerSale from "../components/Banner/BannerSale.vue";
 import Search from "../components/Search.vue";
-import CategoriesList from "../components/CategoriesList.vue";
+import CategoriesList from "../components/Categories/CategoriesList.vue";
 import ProductSlider from "../components/Product/ProductSlider.vue";
 import AppButton from "../components/UI/AppButton.vue";
-import Banner from "../components/Banner.vue";
+import Banner from "../components/Banner/Banner.vue";
 
 export default {
   data() {

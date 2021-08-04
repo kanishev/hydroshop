@@ -369,3 +369,22 @@
     margin: 0;
   }
 }
+
+@media (max-width: 320px) {
+  .product-item__wrapper {
+    width: auto;
+  }
+
+  .footer-form__input {
+    padding: 0;
+  }
+
+  .pagination-list__item {
+    padding: 10px 10px;
+  }
+
+  .card__input-search {
+    margin: 0;
+    padding: 10px 5px 10px 10px;
+  }
+}

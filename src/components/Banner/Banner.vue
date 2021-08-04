@@ -3,12 +3,12 @@
     <div class="banner__item banner-images">
       <img
         class="banner__img"
-        src="../images/content/banner-image-1.png"
+        src="../../images/content/banner-image-1.png"
         alt="banner-image"
       />
       <img
         class="banner__img"
-        src="../images/content/banner-image-2.png"
+        src="../../images/content/banner-image-2.png"
         alt="banner-image"
       />
     </div>
