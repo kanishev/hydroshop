@@ -787,6 +787,8 @@ table td {
   font-size: 14px;
   line-height: 22px;
   max-width: 200px;
+  transition: height 0.35s ease-in-out;
+  overflow: hidden;
 }
 
 .social-list {
@@ -954,7 +956,7 @@ button.catalog__filter-btn_line {
 }
 
 .aside-filter__tab.tab--active {
-  color: #2f3035;
+  color: #1c62cd;
   font-weight: bold;
 }
 
@@ -990,19 +992,23 @@ button.catalog__filter-btn_line {
   height: 8px;
 }
 
-.filter__item-drop--active::before {
+.filter__item-drop.active::before {
   transform: rotate(180deg);
 }
 
 .aside-filter__content {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 15px;
+  transition: height 0.35s ease-in-out;
+}
+
+.aside-filter__content:not(.active) {
+  display: none;
 }
 
 .aside-filter__content-box {
   width: 50%;
-  margin-bottom: 5px;
 }
 
 .aside-filter__content-label {

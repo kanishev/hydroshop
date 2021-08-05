@@ -15,28 +15,31 @@
         <div class="search__inner">
           <div class="search__tabs tabs-wrapper">
             <div class="mobile-overflow">
-              <app-tab class="search__tabs-item tab--active" href="#tab-1">
+              <app-tab
+                class="search search__tabs-item tab--active"
+                href="#search-1"
+              >
                 Поиск по номеру</app-tab
               >
-              <app-tab class="search__tabs-item" href="#tab-2">
+              <app-tab class="search search__tabs-item" href="#search-2">
                 Поиск по марке</app-tab
               >
-              <app-tab class="search__tabs-item" href="#tab-3">
+              <app-tab class="search search__tabs-item" href="#search-3">
                 Поиск по названию товара</app-tab
               >
             </div>
           </div>
           <div class="search__content">
             <div
-              id="tab-1"
+              id="search-1"
               class="tabs-content search__content-item tabs-content--active"
             >
               <search-block searchTarget="Введите номер"></search-block>
             </div>
-            <div id="tab-2" class="tabs-content search__content-item">
+            <div id="search-2" class="tabs-content search__content-item">
               <search-block searchTarget="Введите марку"></search-block>
             </div>
-            <div id="tab-3" class="tabs-content search__content-item">
+            <div id="search-3" class="tabs-content search__content-item">
               <search-block
                 searchTarget="Введите название товара"
               ></search-block>
@@ -58,22 +61,18 @@
           <h3 class="product__title">Популярные товары</h3>
           <div class="tabs-wrapper">
             <div class="tabs products__tabs mobile-overflow">
-              <app-tab class="products__tab tab--active" href="#product-tab-1">
+              <app-tab class="products__tab tab--active" href="#product-1">
                 запчасти</app-tab
               >
-              <app-tab class="products__tab" href="#product-tab-2">
-                моторы</app-tab
-              >
-              <app-tab class="products__tab" href="#product-tab-3">
-                шины</app-tab
-              >
-              <app-tab class="products__tab" href="#product-tab-4">
+              <app-tab class="products__tab" href="#product-2"> моторы</app-tab>
+              <app-tab class="products__tab" href="#product-3"> шины</app-tab>
+              <app-tab class="products__tab" href="#product-4">
                 электроника</app-tab
               >
-              <app-tab class="products__tab" href="#product-tab-5">
+              <app-tab class="products__tab" href="#product-5">
                 инструменты</app-tab
               >
-              <app-tab class="products__tab" href="#product-tab-6">
+              <app-tab class="products__tab" href="#product-6">
                 аксессуары</app-tab
               >
             </div>
@@ -82,7 +81,7 @@
             <div
               v-for="(product, idx) in products"
               :key="idx"
-              :id="'product-tab' + '-' + (idx + 1)"
+              :id="'product' + '-' + (idx + 1)"
               :class="
                 idx === 0
                   ? 'tabs-content products__content tabs-content--active'
@@ -111,22 +110,18 @@
           <h3 class="product__title">С этим также покупают</h3>
           <div class="tabs-wrapper">
             <div class="tabs products__tabs mobile-overflow">
-              <app-tab class="products__tab tab--active" href="#popular-tab-1">
+              <app-tab class="products__tab tab--active" href="#popular-1">
                 запчасти</app-tab
               >
-              <app-tab class="products__tab" href="#popular-tab-2">
-                моторы</app-tab
-              >
-              <app-tab class="products__tab" href="#popular-tab-3">
-                шины</app-tab
-              >
-              <app-tab class="products__tab" href="#popular-tab-4">
+              <app-tab class="products__tab" href="#popular-2"> моторы</app-tab>
+              <app-tab class="products__tab" href="#popular-3"> шины</app-tab>
+              <app-tab class="products__tab" href="#popular-4">
                 электроника</app-tab
               >
-              <app-tab class="products__tab" href="#popular-tab-5">
+              <app-tab class="products__tab" href="#popular-5">
                 инструменты</app-tab
               >
-              <app-tab class="products__tab" href="#popular-tab-6">
+              <app-tab class="products__tab" href="#popular-6">
                 аксессуары</app-tab
               >
             </div>
@@ -135,7 +130,7 @@
             <div
               v-for="(product, idx) in additional"
               :key="idx"
-              :id="'popular-tab' + '-' + (idx + 1)"
+              :id="'popular-' + (idx + 1)"
               :class="
                 idx === 0
                   ? 'tabs-content products__content tabs-content--active'

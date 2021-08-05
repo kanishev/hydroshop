@@ -3,11 +3,9 @@
     <div class="tabs-wrapper no-scroll">
       <div class="tabs aside-filter__tabs">
         <app-tab class="aside-filter__tab tab--active" href="#filter-1">
-          <span>Параметры</span></app-tab
-        >
-        <app-tab class="aside-filter__tab" href="#filter-2">
-          <span>по марке</span></app-tab
-        >
+          Параметры
+        </app-tab>
+        <app-tab class="aside-filter__tab" href="#filter-2"> по марке</app-tab>
       </div>
     </div>
     <div class="tabs-container">

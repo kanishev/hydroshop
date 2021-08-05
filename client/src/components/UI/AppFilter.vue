@@ -1,7 +1,7 @@
 <template>
   <li class="aside-filter__item-drop">
-    <p class="aside-filter__item-title filter__item-drop">{{ title }}</p>
-    <div class="aside-filter__content">
+    <p class="aside-filter__item-title filter__item-drop active">{{ title }}</p>
+    <div class="aside-filter__content active">
       <slot></slot>
 
       <div

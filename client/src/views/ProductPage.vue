@@ -10,74 +10,43 @@
       <div class="container">
         <div class="tabs-wrapper">
           <div class="tabs card__tabs-box mobile-overflow">
-            <app-tab class="card__tab tab--active" href="#product-card__tab-1"
+            <app-tab class="card__tab tab--active" href="#card-1"
               >О товаре</app-tab
             >
 
-            <app-tab class="card__tab" href="#product-card__tab-2"
-              >Характеристики</app-tab
-            >
-            <app-tab class="card__tab" href="#product-card__tab-3"
-              >Отзывы</app-tab
-            >
-            <app-tab class="card__tab" href="#product-card__tab-4"
-              >Самовывоз</app-tab
-            >
-            <app-tab class="card__tab" href="#product-card__tab-5"
-              >Доставка</app-tab
-            >
-            <app-tab class="card__tab" href="#product-card__tab-6"
-              >Сервис</app-tab
-            >
+            <app-tab class="card__tab" href="#card-2">Характеристики</app-tab>
+            <app-tab class="card__tab" href="#card-3">Отзывы</app-tab>
+            <app-tab class="card__tab" href="#card-4">Самовывоз</app-tab>
+            <app-tab class="card__tab" href="#card-5">Доставка</app-tab>
+            <app-tab class="card__tab" href="#card-6">Сервис</app-tab>
           </div>
         </div>
         <div class="tabs-container">
           <div
-            id="product-card__tab-1"
+            id="card-1"
             class="card__tab-content tabs-content tabs-content--active"
           >
             <product-table></product-table>
           </div>
-          <div
-            id="product-card__tab-2"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-2" class="product-card__tab-content tabs-content">
             <product-info></product-info>
           </div>
-          <div
-            id="product-card__tab-3"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-3" class="product-card__tab-content tabs-content">
             content
           </div>
-          <div
-            id="product-card__tab-4"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-4" class="product-card__tab-content tabs-content">
             content
           </div>
-          <div
-            id="product-card__tab-5"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-5" class="product-card__tab-content tabs-content">
             content
           </div>
-          <div
-            id="product-card__tab-6"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-6" class="product-card__tab-content tabs-content">
             content
           </div>
-          <div
-            id="product-card__tab-7"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-7" class="product-card__tab-content tabs-content">
             content
           </div>
-          <div
-            id="product-card__tab-8"
-            class="product-card__tab-content tabs-content"
-          >
+          <div id="card-8" class="product-card__tab-content tabs-content">
             content
           </div>
         </div>
