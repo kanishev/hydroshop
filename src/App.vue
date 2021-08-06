@@ -261,6 +261,9 @@ import Navbar from "./components/Navbar.vue";
 import MenuCategories from "./components/MenuCategories.vue";
 
 export default {
+  mounted() {
+    console.log("mount");
+  },
   components: { Navbar, MenuCategories },
 };
 </script>

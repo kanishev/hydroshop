@@ -241,6 +241,10 @@ table td {
   max-width: 870px;
 }
 
+.VueCarousel-slide {
+  visibility: visible;
+}
+
 .banner-section__slider-item img {
   object-fit: cover;
   min-height: 400px;
@@ -1001,6 +1005,10 @@ button.catalog__filter-btn_line {
   flex-wrap: wrap;
   margin-top: 15px;
   transition: height 0.35s ease-in-out;
+}
+
+.aside-filter__content.level-filter {
+  display: block;
 }
 
 .aside-filter__content:not(.active) {

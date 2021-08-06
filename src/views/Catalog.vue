@@ -59,6 +59,9 @@ import ProductItem from "../components/Product/ProdutItem.vue";
 import AsideFilter from "../components/Filter/AsideFilter.vue";
 
 export default {
+  beforeUpdate() {
+    console.log("hello");
+  },
   data() {
     return {
       catalog: [

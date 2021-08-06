@@ -28,13 +28,6 @@
             >
             </app-filter>
 
-            <app-filter
-              type="radio"
-              :fields="['Все', 'Акции', 'Новинки']"
-              title="Акции"
-            >
-            </app-filter>
-
             <app-range></app-range>
 
             <li class="aside-filter__item-list">

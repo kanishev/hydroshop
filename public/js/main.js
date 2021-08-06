@@ -1,80 +1,4 @@
-$(function () {
-  $(".banner-section__slider").slick({
-    dots: true,
-    prevArrow:
-      '<button class="slick-btn slick-btn__prev"><img src="images/icons/arrow-left.svg" alt="leftArrow"></button>',
-    nextArrow:
-      '<button class="slick-btn slick-btn__next"><img src="images/icons/arrow-right.svg" alt="nextArrow"></button>',
-    responsive: [
-      {
-        breakpoint: 960,
-        settings: {
-          arrows: false,
-        },
-      },
-    ],
-  });
-
-  $(".product-slider").slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    prevArrow:
-      '<button class="product-btn product-btn__prev"><img src="images/icons/arrow-black-left.svg" alt="leftArrow"></button>',
-    nextArrow:
-      '<button class="product-btn product-btn__next"><img src="images/icons/arrow-black-right.svg" alt="nextArrow"></button>',
-    responsive: [
-      {
-        breakpoint: 1300,
-        settings: {
-          arrows: false,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          dots: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 870,
-        settings: {
-          slidesToShow: 2,
-          dots: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 590,
-        settings: {
-          slidesToShow: 1,
-          dots: true,
-          arrows: false,
-        },
-      },
-    ],
-  });
-
-  $(".filter-style").styler();
-
-  $(".js-range-slider").ionRangeSlider({
-    type: "double",
-    min: 100000,
-    max: 500000,
-    from: 150000,
-    to: 340000,
-    grid: false,
-  });
-
-  $(".rate-yo").rateYo({
-    ratedFill: "#1c62cd",
-    spacing: "10px",
-    normalFill: "#c4c4c4",
-  });
-
+function startScript() {
   let tabs = document.querySelectorAll(".tab");
   let tabsContents = document.querySelectorAll(".tabs-content");
 
@@ -87,13 +11,13 @@ $(function () {
     let activeTabId = target.getAttribute("href");
     let activeTab = document.querySelector(activeTabId);
 
-    for (var i = 0; i < tabs.length; i++) {
+    for (let i = 0; i < tabs.length; i++) {
       tabs[i].classList.remove("tab--active");
     }
 
     target.classList.add("tab--active");
 
-    for (i = 0; i < tabsContents.length; i++) {
+    for (let i = 0; i < tabsContents.length; i++) {
       if (
         activeTabId.includes(tabsContents[i].getAttribute("id").split("")[0])
       ) {
@@ -102,11 +26,9 @@ $(function () {
     }
 
     activeTab.classList.add("tabs-content--active");
-
-    // $(".product-slider").slick("setPosition");
   }
 
-  for (i = 0; i < tabs.length; i++) {
+  for (let i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", myTabClicks);
   }
 
@@ -156,7 +78,7 @@ $(function () {
   function toggleLinks(e) {
     e.preventDefault();
 
-    for (var i = 0; i < linkToggle.length; i++) {
+    for (let i = 0; i < linkToggle.length; i++) {
       linkToggle[i].classList.remove("tab--active");
     }
 
@@ -182,11 +104,13 @@ $(function () {
     }
   }
 
-  for (i = 0; i < linkToggle.length; i++) {
+  for (let i = 0; i < linkToggle.length; i++) {
     linkToggle[i].addEventListener("click", toggleLinks);
   }
 
-  for (i = 0; i < filterDrops.length; i++) {
+  for (let i = 0; i < filterDrops.length; i++) {
     filterDrops[i].addEventListener("click", toggleLinks);
   }
-});
+}
+
+export default startScript;

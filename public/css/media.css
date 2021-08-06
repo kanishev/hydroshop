@@ -185,6 +185,10 @@
     overflow-x: scroll;
   }
 
+  .catalog__title {
+    margin-top: 30px;
+  }
+
   .catalog__filter-btn button {
     display: none;
   }

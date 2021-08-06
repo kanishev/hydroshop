@@ -5,18 +5,23 @@
       <slot></slot>
 
       <div
-        class="aside-filter__content-box"
+        class="checkbox aside-filter__content-box"
         v-for="field in fields"
         :key="field"
       >
-        <label class="aside-filter__content-label">
-          <input
-            class="filter-style"
-            :type="type"
-            :name="type === 'radio' && title"
-          />
+        <input
+          :class="`${type}__input filter-style`"
+          :type="type"
+          :name="type == 'radio' && title"
+          :id="field"
+        />
+        <label
+          :class="`${type}__label aside-filter__content-label`"
+          :for="field"
+        >
           {{ field }}
         </label>
+
         <slot name="span"></slot>
       </div>
 
