@@ -23,10 +23,10 @@
                   </a>
                 </li>
                 <li class="user-list__item">
-                  <a class="user-list__link cart" href="#">
+                  <router-link class="user-list__link cart" to="cart">
                     <img src="./assets/icons/cart.svg" alt="" />
                     <p class="cart__num">1</p>
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </div>
