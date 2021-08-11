@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="/index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Приложение курсов</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/courses">Курсы</a></li>
+          <li><a href="/add">Добавить курс</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Добавить курс</h1>
+
+      <form action="/admin/product" method="POST">
+        <div class="input-field">
+          <input
+            id="title"
+            name="title"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="title">Название курса</label>
+          <span class="helper-text" data-error="wrong"></span>
+        </div>
+        <div class="input-field">
+          <input
+            id="price"
+            name="price"
+            type="number"
+            class="validate"
+            required
+            min="1"
+          />
+          <label for="price">Цена курса</label>
+          <span class="helper-text" data-error="wrong"></span>
+        </div>
+        <div class="input-field">
+          <input
+            id="image"
+            name="image"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="image">URL артинки</label>
+          <span class="helper-text" data-error="wrong"></span>
+        </div>
+
+        <button class="btn btn-primary" type="submit">SUBMIT</button>
+      </form>
+    </div>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>
