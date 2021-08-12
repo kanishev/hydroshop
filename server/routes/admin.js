@@ -10,15 +10,18 @@ router.post("/", (req, res) => {
   console.log("REQQQQ", req.body);
 });
 
-router.get("/products", async (req, res) => {
-  // const courses = await Course.getAll();
-  res.json({ message: "Hello" });
-});
-
-router.post("/product", async (req, res) => {
-  console.log("REQ", req.body);
+router.post("/create", async (req, res) => {
+  console.log(req.user);
   const { title, price, img, rate, brand, info } = req.body;
-  const product = new Product({ title, price, img, rate, brand, info });
+  const product = new Product({
+    title,
+    price,
+    img,
+    rate,
+    brand,
+    info,
+    userId: req.user,
+  });
 
   try {
     await product.save();
@@ -28,13 +31,28 @@ router.post("/product", async (req, res) => {
   }
 });
 
-router.get("/product/:id", async (req, res) => {
-  const course = await Course.getById(req.params.id);
-  res.json(course);
+router.post("/edit", async (req, res) => {
+  try {
+    const { id } = req.body;
+    delete req.body.id;
+
+    await Product.findByIdAndUpdate(id, req.body);
+    res.json({ message: "UPDATED" });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
-router.post("/product/edit", async (req, res) => {
-  await Course.update(req.body);
+router.delete("/delete", async (req, res) => {
+  try {
+    await Product.deleteOne({
+      _id: req.body.id,
+    });
+
+    res.json({ message: "DELETED" });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 // // =>>>>>>>>>>>>>>>>>>>>>>>>>>>>> должная быть отдельная страница + id получать для обновы

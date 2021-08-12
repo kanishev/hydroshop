@@ -18,10 +18,23 @@ const product = new Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   info: {
     type: String,
     required: true,
   },
+});
+
+product.method("toClient", function () {
+  const product = this.toObject();
+
+  product.id = product._id;
+  delete product._id;
+
+  return product;
 });
 
 module.exports = model("Product", product);

@@ -1,9 +1,31 @@
-class Cart {
-  static add() {}
+const { Schema, model } = require("mongoose");
 
-  static fetch() {
-    return { 1: "1" };
-  }
-}
+const cart = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  img: String,
+  rate: {
+    type: Number,
+    required: false,
+  },
+  brand: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  info: {
+    type: String,
+    required: true,
+  },
+});
 
-module.exports = Cart;
+module.exports = model("Cart", cart);
