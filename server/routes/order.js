@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { count } = require("../models/order");
 const Order = require("../models/order");
 const router = Router();
 
@@ -16,7 +15,7 @@ router.get("/", async (req, res) => {
       }, 0),
     }));
 
-    console.log(result);
+    res.json(result);
   } catch (e) {
     console.log(e);
   }

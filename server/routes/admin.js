@@ -6,10 +6,6 @@ router.get("/", (req, res) => {
   res.json({ message: "Страница админа" });
 });
 
-router.post("/", (req, res) => {
-  console.log("REQQQQ", req.body);
-});
-
 router.post("/create", async (req, res) => {
   console.log(req.user);
   const { title, price, img, rate, brand, info } = req.body;
@@ -54,16 +50,5 @@ router.delete("/delete", async (req, res) => {
     console.log(e);
   }
 });
-
-// // =>>>>>>>>>>>>>>>>>>>>>>>>>>>>> должная быть отдельная страница + id получать для обновы
-
-// router.get("/product/:id/edit", async (req, res) => {
-//   if (!req.query.allow) {
-//     return res.redirect("/");
-//   }
-
-//   const course = await Course.getById(req.params.id);
-//   res.json(course);
-// });
 
 module.exports = router;

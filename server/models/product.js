@@ -23,8 +23,8 @@ const product = new Schema({
     ref: "User",
   },
   info: {
-    type: String,
-    required: true,
+    type: Object,
+    default: Object,
   },
 });
 

@@ -19,6 +19,7 @@ function mapCartProducts(cart) {
 
 router.post("/add", async (req, res) => {
   const product = await Product.findById(req.body.id);
+  console.log(req.user);
   await req.user.addToCart(product);
   res.json({ message: "Создано" });
 });
@@ -26,7 +27,7 @@ router.post("/add", async (req, res) => {
 router.get("/", async (req, res) => {
   const user = await req.user.populate("cart.items.productId").execPopulate();
   const products = mapCartProducts(user.cart);
-  res.json({ message: "Корзина" });
+  res.json(products);
 });
 
 router.delete("/remove/:id", async (req, res) => {
