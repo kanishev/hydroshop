@@ -17,14 +17,13 @@ const productsRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
 const authRoutes = require("./routes/auth");
 
-const MONGODB_URI =
-  "mongodb+srv://hydroshop:wdTmyhL0NY7MzTc3@cluster0.t8huk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const keys = require("./keys/index");
 
 const app = express();
 
 const store = new MongoStore({
   collection: "sessions",
-  uri: MONGODB_URI,
+  uri: keys.MONGODB_URI,
 });
 
 app.use(cors());
@@ -38,7 +37,7 @@ app.use(
 );
 app.use(
   session({
-    secret: "some secret",
+    secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store,
@@ -58,7 +57,7 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "views", "home.html"));
 });
 
-app.use("/cart", cartRoutes);
+app.use("/cart", authMdw, cartRoutes);
 app.use("/admin", adminMdw, adminRoutes);
 app.use("/products", productsRoutes);
 app.use("/order", authMdw, orderRoutes);
@@ -72,7 +71,7 @@ const PORT = process.env.PORT || 3000;
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URI, {
+    await mongoose.connect(keys.MONGODB_URI, {
       useNewUrlParser: true,
       useFindAndModify: false,
     });
