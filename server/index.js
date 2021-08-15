@@ -5,11 +5,14 @@ const flash = require("connect-flash");
 const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
+const helmet = require("helmet");
 
 const varMdv = require("./middleware/vars");
 const adminMdw = require("./middleware/admin");
 const authMdw = require("./middleware/auth");
 const userMdw = require("./middleware/user");
+const errorMdw = require("./middleware/error");
+const fileMdw = require("./middleware/file");
 
 const cartRoutes = require("./routes/cart");
 const adminRoutes = require("./routes/admin");
@@ -28,6 +31,7 @@ const store = new MongoStore({
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("images/", express.static(path.join(__dirname, "images")));
 
 app.use(express.json());
 app.use(
@@ -44,12 +48,9 @@ app.use(
   })
 );
 
-// app.get("/", async (req, res) => {
-//   res.sendFile(path.join(__dirname, "views", "index.html"));
-// });
-
+app.use(fileMdw.single("product"));
 app.use(flash());
-
+app.use(helmet());
 app.use(userMdw);
 app.use(varMdv);
 
@@ -62,12 +63,9 @@ app.use("/admin", adminMdw, adminRoutes);
 app.use("/products", productsRoutes);
 app.use("/order", authMdw, orderRoutes);
 app.use("/auth", authRoutes);
+app.use(errorMdw);
 
-app.get("/auth", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "auth.html"));
-});
-
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 async function start() {
   try {

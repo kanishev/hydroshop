@@ -8,7 +8,7 @@ const crypto = require("crypto");
 const keys = require("../keys/index");
 const reqEmail = require("../emails/registration");
 const resetEmail = require("../emails/reset");
-
+const Product = require("../models/product");
 const router = Router();
 
 const transporter = nodemailer.createTransport(
@@ -16,6 +16,10 @@ const transporter = nodemailer.createTransport(
     auth: { api_key: keys.SENDGRID_KEY },
   })
 );
+
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views", "auth.html"));
+});
 
 router.post("/login", async (req, res) => {
   try {
@@ -57,7 +61,7 @@ router.get("/logout", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, repeat, name } = req.body;
+    const { email, password, confirm, name } = req.body;
 
     const candidate = await User.findOne({ email });
 

@@ -259,10 +259,17 @@
 <script>
 import Navbar from "./components/Navbar.vue";
 import MenuCategories from "./components/MenuCategories.vue";
+import axios from "axios";
 
 export default {
   mounted() {
-    console.log("mount");
+    this.getData();
+  },
+  methods: {
+    async getData() {
+      const res = await axios.get("/products");
+      this.data = res.data;
+    },
   },
   components: { Navbar, MenuCategories },
 };

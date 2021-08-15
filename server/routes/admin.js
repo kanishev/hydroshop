@@ -1,9 +1,11 @@
 const { Router } = require("express");
+const path = require("path");
 const Product = require("../models/product");
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.json({ message: "Страница админа" });
+  console.log("ADMIN");
+  res.sendFile(path.join(__dirname, "../views", "admin.html"));
 });
 
 router.post("/create", async (req, res) => {
@@ -49,6 +51,11 @@ router.delete("/delete", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+});
+
+router.post("/image", async (req, res) => {
+  console.log(req.file);
+  res.json({ message: "Изображение обновлено" });
 });
 
 module.exports = router;

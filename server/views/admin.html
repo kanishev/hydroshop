@@ -24,45 +24,28 @@
     </nav>
 
     <div class="container">
-      <h1>Добавить курс</h1>
+      <div class="col s6">
+        <img
+          class="avatar"
+          src="https://avatars2.githubusercontent.com/u/499550?s=460&v=4"
+          alt=""
+        />
 
-      <form action="/admin/product" method="POST">
-        <div class="input-field">
-          <input
-            id="title"
-            name="title"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="title">Название курса</label>
-          <span class="helper-text" data-error="wrong"></span>
-        </div>
-        <div class="input-field">
-          <input
-            id="price"
-            name="price"
-            type="number"
-            class="validate"
-            required
-            min="1"
-          />
-          <label for="price">Цена курса</label>
-          <span class="helper-text" data-error="wrong"></span>
-        </div>
-        <div class="input-field">
-          <input
-            id="image"
-            name="image"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="image">URL артинки</label>
-          <span class="helper-text" data-error="wrong"></span>
+        <p>Аватара нет</p>
+      </div>
+
+      <form action="admin/image" method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Аватар</span>
+            <input type="file" name="product" />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" />
+          </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">SUBMIT</button>
+        <button type="submit" class="btn">Изменить</button>
       </form>
     </div>
   </body>

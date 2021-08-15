@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
   }
 
   if (req.session.user.email === "admin@mail.ru") {
-    next();
+    return next();
   }
 
   return res.redirect("/auth");

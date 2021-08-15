@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const Course = require("../models/product");
+const Product = require("../models/product");
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const courses = await Course.find();
-  res.json(courses);
+  const products = await Product.find();
+  console.log(products);
+  return res.json(products);
 });
 
 router.get("/:id", async (req, res) => {
