@@ -28,6 +28,8 @@ router.post("/login", async (req, res) => {
 
     if (candidate) {
       const areSame = await bcrypt.compare(password, candidate.password);
+
+      console.log(candidate);
       if (areSame) {
         req.session.user = candidate;
         req.session.isAuthenticated = true;
@@ -36,7 +38,10 @@ router.post("/login", async (req, res) => {
             throw err;
           }
           // req.flash('error', 'Регистрация прошла успешно')
-          return res.json({ message: "Пользователь вошел в систему" });
+          return res.json({
+            message: "Пользователь вошел в систему",
+            user: req.session.user.email,
+          });
         });
       } else {
         return res.json({ message: "Неверный пароль" });
@@ -70,6 +75,9 @@ router.post("/register", async (req, res) => {
       res.json({ message: "Пользователь уже существует" });
       // redirect login
     } else {
+      if (password !== confirm) {
+        return res.json({ message: "Пароли должны совпадать" });
+      }
       const hashPassword = await bcrypt.hash(password, 10);
       const user = new User({
         email,

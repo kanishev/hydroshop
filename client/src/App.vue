@@ -18,7 +18,11 @@
                   </a>
                 </li>
                 <li class="user-list__item">
-                  <a class="user-list__link" href="#">
+                  <a
+                    class="user-list__link"
+                    href="#"
+                    @click.prevent="isPopup = true"
+                  >
                     <img src="./assets/icons/user.svg" alt="" />
                   </a>
                 </li>
@@ -250,6 +254,8 @@
         </div>
       </div>
     </footer>
+
+    <auth-popup :isPopup="isPopup" @closePopup="fn()"></auth-popup>
   </div>
 </template>
 
@@ -258,19 +264,30 @@
 
 <script>
 import Navbar from "./components/Navbar.vue";
+import AuthPopup from "./components/Auth.vue";
 import MenuCategories from "./components/MenuCategories.vue";
 import axios from "axios";
 
 export default {
   mounted() {
-    this.getData();
+    // this.getData();
+  },
+  data() {
+    return {
+      isPopup: false,
+    };
   },
   methods: {
+    fn() {
+      this.isPopup = false;
+    },
     async getData() {
       const res = await axios.get("/products");
-      this.data = res.data;
+      this.data = await res.data;
+      console.log(this.data);
     },
   },
-  components: { Navbar, MenuCategories },
+  components: { Navbar, MenuCategories, AuthPopup },
 };
 </script>
+
