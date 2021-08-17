@@ -35,7 +35,7 @@
 
         <div class="catalog__inner-list">
           <product-item
-            v-for="product in catalog"
+            v-for="product in products"
             :key="product.title"
             :product="product"
           >
@@ -59,8 +59,15 @@ import ProductItem from "../components/Product/ProdutItem.vue";
 import AsideFilter from "../components/Filter/AsideFilter.vue";
 
 export default {
-  beforeUpdate() {
-    console.log("hello");
+  computed: {
+    products() {
+      console.log(this.$store.getters.getProducts);
+
+      return this.$store.getters.getProducts;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getProducts");
   },
   data() {
     return {

@@ -22,6 +22,14 @@ const product = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  sale: {
+    type: Boolean,
+    default: false,
+  },
+  available: {
+    type: Boolean,
+    default: false,
+  },
   info: {
     type: Object,
     default: Object,

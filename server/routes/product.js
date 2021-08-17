@@ -4,6 +4,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const products = await Product.find();
+  console.log(products);
   return res.json(products);
 });
 

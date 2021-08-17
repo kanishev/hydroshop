@@ -54,10 +54,9 @@ app.use(helmet());
 app.use(userMdw);
 app.use(varMdv);
 
-app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "home.html"));
+app.get("/", (req, res) => {
+  console.log("ТУТА");
 });
-
 app.use("/cart", authMdw, cartRoutes);
 app.use("/admin", adminMdw, adminRoutes);
 app.use("/products", productsRoutes);

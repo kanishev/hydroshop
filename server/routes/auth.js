@@ -18,7 +18,8 @@ const transporter = nodemailer.createTransport(
 );
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../views", "auth.html"));
+  console.log("!!!");
+  return res.json(req.session.user);
 });
 
 router.post("/login", async (req, res) => {
@@ -97,10 +98,6 @@ router.post("/register", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-});
-
-router.get("/reset", (req, res) => {
-  //Возвращаться страницу восстановления
 });
 
 router.post("/reset", (req, res) => {

@@ -7,9 +7,10 @@
     <a
       :class="product.sale ? 'product-item product-item--sale' : 'product-item'"
       href="#"
+      @click.prevent="openProduct(product._id)"
     >
-      <p class="product-item__hover-text">посмотреть товар</p>
-      <img :src="`${product.src}`" alt="" class="product-item__img" />
+      <a class="product-item__hover-text">посмотреть товар</a>
+      <img :src="`${product.img}`" alt="" class="product-item__img" />
       <h4 class="product-item__title">{{ product.title }}</h4>
 
       <slot></slot>
@@ -20,6 +21,11 @@
 <script>
 export default {
   props: ["product"],
+  methods: {
+    openProduct(id) {
+      this.$router.push(`product/${id}`);
+    },
+  },
 };
 </script>
         

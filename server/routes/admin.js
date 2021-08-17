@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 router.post("/create", async (req, res) => {
   console.log(req.user);
-  const { title, price, img, rate, brand, info } = req.body;
+  const { title, price, img, rate, brand, info, sale, available } = req.body;
   const product = new Product({
     title,
     price,
@@ -18,8 +18,12 @@ router.post("/create", async (req, res) => {
     rate,
     brand,
     info,
+    sale,
+    available,
     userId: req.user,
   });
+
+  console.log(product);
 
   try {
     await product.save();

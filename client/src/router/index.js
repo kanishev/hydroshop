@@ -13,26 +13,46 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    meta: {
+      // auth: false,
+      layout: "main",
+    },
   },
   {
     path: "/catalog",
     name: "catalog",
     component: Catalog,
+    meta: {
+      // auth: false,
+      layout: "main",
+    },
   },
   {
-    path: "/product",
+    path: "/product/:id",
     name: "product",
     component: ProductPage,
+    meta: {
+      // auth: false,
+      layout: "main",
+    },
   },
   {
     path: "/cart",
     name: "cart",
     component: CartPage,
+    meta: {
+      // auth: false,
+      layout: "main",
+    },
   },
   {
     path: "/auth",
     name: "auth",
     component: AuthPage,
+    meta: {
+      // auth: true,
+      layout: "empty",
+    },
   },
 ];
 
