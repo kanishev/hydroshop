@@ -266,18 +266,17 @@ import Navbar from "../components/Navbar.vue";
 import MenuCategories from "../components/MenuCategories.vue";
 
 export default {
-  mounted() {
+  async mounted() {
     // this.$store.dispatch("getUser");
   },
   computed: {
     user() {
-      return true;
-      // return this.$store.getters.getUser;
+      return this.$store.getters.getUser;
     },
   },
   methods: {
     logout() {
-      // this.$store.dispatch("logout");
+      this.$store.dispatch("logout");
     },
   },
   components: { Navbar, MenuCategories },

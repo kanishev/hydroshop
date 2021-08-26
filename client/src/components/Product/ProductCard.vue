@@ -1,22 +1,22 @@
 <template>
-  <div class="product-card__inner">
-    <div class="product-card__img-box product-item--sale">
+  <div v-if="product" class="product-card__inner">
+    <div class="product-card__img-box" :class="{'product-item--sale' : product.sale }">
       <img
         class="product-card__img"
-        src="../../images/product/product-page__item.png"
+        :src="product.img"
         alt=""
       />
       <p class="product-card__price-old">1 200 475 Р</p>
-      <p class="product-card__price-new">1 100 475 Р</p>
+      <p class="product-card__price-new">{{product.price}} Р</p>
       <a href="#" class="product-card__link"> Нашли дешевле? Снизим цену </a>
       <button class="product-card__buy product-card__buy-mobile">купить</button>
     </div>
 
     <div class="product-card__content">
       <h1 class="product-card__title">
-        Гидроцикл BRP SeaDao GTI 155hp SE Long Blue Metallic
+        {{product.title}}
       </h1>
-      <p class="product-card__code">Код товара: 21221-2</p>
+      <p class="product-card__code">Код товара: {{product._id}} </p>
       <div class="product-card__buttons">
         <a class="product-card__icon-favourite" href="#">
           <img src="@/assets/icons/heart.svg" alt="" />
@@ -47,12 +47,14 @@
       </div>
     </div>
   </div>
+  <div v-else>No data</div>
 </template>
 
 <script>
 import ProductInfo from "../Product/ProductInfo.vue";
 
 export default {
+  props:['product'],
   components: { ProductInfo },
 };
 </script>

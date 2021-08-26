@@ -2,7 +2,7 @@
   <div>
     <section class="product-card">
       <div class="container">
-        <product-card></product-card>
+        <product-card :product="product"></product-card>
       </div>
     </section>
 
@@ -104,10 +104,18 @@ import ProductCard from "../components/Product/ProductCard.vue";
 import ProductSlider from "../components/Product/ProductSlider.vue";
 import ProductTable from "../components/Product/ProductTable.vue";
 import ProductInfo from "../components/Product/ProductInfo.vue";
+import axios from 'axios'
 
 export default {
+  mounted(){
+    this.getProduct().then(({data}) => {
+      console.log(data)
+      this.product = data
+    })
+  },
   data() {
     return {
+      product: [],
       additional: [
         {
           title: "BRP Audio-портативная система",
@@ -154,7 +162,13 @@ export default {
       ],
     };
   },
+  methods: {
+    async getProduct(){
+      console.log('TYTA', this.$route.params.id)
+      return await axios.get(`/products/${this.$route.params.id}`)
+
+    }
+  },
   components: { ProductSlider, ProductTable, ProductCard, ProductInfo },
 };
 </script>
-

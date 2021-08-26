@@ -5,6 +5,8 @@ import Catalog from "../views/Catalog.vue";
 import ProductPage from "../views/ProductPage.vue";
 import CartPage from "../views/CartPage.vue";
 import AuthPage from "../views/AuthPage.vue";
+import Ex from "../views/Ex.vue";
+
 
 Vue.use(VueRouter);
 
@@ -28,9 +30,18 @@ const routes = [
     },
   },
   {
-    path: "/product/:id",
+    path: "/products/:id",
     name: "product",
     component: ProductPage,
+    meta: {
+      // auth: false,
+      layout: "main",
+    },
+  },
+  {
+    path: "/ex/:id",
+    name: "ex",
+    component: Ex,
     meta: {
       // auth: false,
       layout: "main",

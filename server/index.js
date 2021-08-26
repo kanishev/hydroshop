@@ -30,7 +30,7 @@ const store = new MongoStore({
 });
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 app.use("images/", express.static(path.join(__dirname, "images")));
 
 app.use(express.json());
@@ -54,9 +54,7 @@ app.use(helmet());
 app.use(userMdw);
 app.use(varMdv);
 
-app.get("/", (req, res) => {
-  console.log("ТУТА");
-});
+
 app.use("/cart", authMdw, cartRoutes);
 app.use("/admin", adminMdw, adminRoutes);
 app.use("/products", productsRoutes);

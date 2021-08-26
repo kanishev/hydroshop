@@ -39,30 +39,30 @@ function startScript() {
       this.classList.toggle("product-item__favourite--active");
     });
 
-  document
-    .querySelector(".catalog__filter-btn_line")
-    .addEventListener("click", function () {
-      this.classList.add("catalog__filter-mode--active");
-      document
-        .querySelector(".catalog__filter-btn_grid")
-        .classList.remove("catalog__filter-mode--active");
+  // document
+  //   .querySelector(".catalog__filter-btn_line")
+  //   .addEventListener("click", function () {
+  //     this.classList.add("catalog__filter-mode--active");
+  //     document
+  //       .querySelector(".catalog__filter-btn_grid")
+  //       .classList.remove("catalog__filter-mode--active");
 
-      for (let i = 0; i < productWrappers.length; i++) {
-        productWrappers[i].classList.add("product-item__wrapper--list");
-      }
-    });
+  //     for (let i = 0; i < productWrappers.length; i++) {
+  //       productWrappers[i].classList.add("product-item__wrapper--list");
+  //     }
+  //   });
 
-  document
-    .querySelector(".catalog__filter-btn_grid")
-    .addEventListener("click", function () {
-      this.classList.add("catalog__filter-mode--active");
-      document
-        .querySelector(".catalog__filter-btn_line")
-        .classList.remove("catalog__filter-mode--active");
-      for (let i = 0; i < productWrappers.length; i++) {
-        productWrappers[i].classList.remove("product-item__wrapper--list");
-      }
-    });
+  // document
+  //   .querySelector(".catalog__filter-btn_grid")
+  //   .addEventListener("click", function () {
+  //     this.classList.add("catalog__filter-mode--active");
+  //     document
+  //       .querySelector(".catalog__filter-btn_line")
+  //       .classList.remove("catalog__filter-mode--active");
+  //     for (let i = 0; i < productWrappers.length; i++) {
+  //       productWrappers[i].classList.remove("product-item__wrapper--list");
+  //     }
+  //   });
 
   document.querySelector(".menu__btn").addEventListener("click", function () {
     document
@@ -70,7 +70,7 @@ function startScript() {
       .classList.toggle("menu-mobile__list--active");
   });
 
-  document.querySelector(".aside__btn").addEventListener("click", toggleLinks);
+  // document.querySelector(".aside__btn").addEventListener("click", toggleLinks);
 
   let linkToggle = document.querySelectorAll(".footer__top-drop");
   let filterDrops = document.querySelectorAll(".filter__item-drop");

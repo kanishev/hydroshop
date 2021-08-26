@@ -3,14 +3,19 @@ const Product = require("../models/product");
 const router = Router();
 
 router.get("/", async (req, res) => {
+  console.log('PRODUCT')
   const products = await Product.find();
-  console.log(products);
   return res.json(products);
 });
 
-router.get("/:id", async (req, res) => {
-  const course = await Course.findById(req.params.id);
-  return res.json(course);
+router.get("/:id", async (req, res, next) => {
+  if(req.params.id === 'undefined'){
+    return next()
+  } else {
+    const product = await Product.findById(req.params.id);
+    return res.json(product)
+  }
+
 });
 
 module.exports = router;

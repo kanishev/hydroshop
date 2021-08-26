@@ -23,10 +23,8 @@ export default {
   props: ["product"],
   methods: {
     openProduct(id) {
-      this.$router.push(`product/${id}`);
+      this.$router.push(`products/${id}`);
     },
   },
 };
 </script>
-        
-
