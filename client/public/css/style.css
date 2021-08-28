@@ -71,6 +71,19 @@ table td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+.btn {
+  padding: 15px 15px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  line-height: 17px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border: none;
+  background: #1c62cd;
+}
+
 .table-date {
   display: flex;
   justify-content: space-between;
@@ -418,15 +431,6 @@ table td {
 
 .search__content-btn {
   padding: 17px 40px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #fff;
-  line-height: 17px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 3px;
-  border: none;
-  background: #1c62cd;
 }
 
 .search__content-input {
@@ -775,13 +779,7 @@ table td {
 }
 
 .footer-form__btn {
-  text-transform: uppercase;
   padding: 10px 16px;
-  border: none;
-  background-color: #1c62cd;
-  color: #fff;
-  font-weight: 600;
-  text-align: center;
   line-height: 13px;
   font-size: 11px;
   letter-spacing: 0.12em;

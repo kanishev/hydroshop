@@ -201,7 +201,7 @@
                 type="text"
                 placeholder="введите ваш email"
               />
-              <button class="footer-form__btn" type="submit">отправить</button>
+              <app-button class="footer-form__btn" type="submit">отправить</app-button>
             </form>
           </div>
           <div class="footer__top-item footer__top-item__list">
@@ -267,7 +267,7 @@ import MenuCategories from "../components/MenuCategories.vue";
 
 export default {
   async mounted() {
-    // this.$store.dispatch("getUser");
+    this.$store.dispatch("getUser");
   },
   computed: {
     user() {

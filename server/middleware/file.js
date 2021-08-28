@@ -1,11 +1,12 @@
 const multer = require("multer");
+const path = require('path')
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, "images");
+    cb(null, path.join(__dirname, '../../client/src/images/catalog'));
   },
   filename(req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, file.originalname);
   },
 });
 
@@ -13,7 +14,6 @@ const allowedTypes = ["image/png", "image/jpg", "image/jpeg"];
 
 const fileFilter = (req, file, cb) => {
   if (allowedTypes.includes(file.mimetype)) {
-    console.log("YES");
     cb(null, true);
   } else {
     cb(null, false);

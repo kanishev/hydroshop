@@ -23,11 +23,11 @@ const product = new Schema({
     ref: "User",
   },
   sale: {
-    type: Boolean,
+    type: Boolean, //Boolean
     default: false,
   },
   available: {
-    type: Boolean,
+    type: Boolean, //Boolean
     default: false,
   },
   info: {

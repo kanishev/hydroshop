@@ -1,5 +1,5 @@
 <template>
-  <button class="search__content-btn" type="submit">
+  <button class="btn" type="submit">
     <slot></slot>
   </button>
 </template>

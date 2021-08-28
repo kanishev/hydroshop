@@ -91,7 +91,6 @@ export default {
         password: this.password,
       });
       const data = await res.data;
-      console.log(data.user);
       if (data.user) {
         this.$store.commit("setUser", data.user);
         this.$router.push("/");

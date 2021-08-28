@@ -18,7 +18,6 @@ const transporter = nodemailer.createTransport(
 );
 
 router.get("/", (req, res) => {
-  console.log("!!!");
   return res.json(req.session.user);
 });
 
@@ -30,7 +29,6 @@ router.post("/login", async (req, res) => {
     if (candidate) {
       const areSame = await bcrypt.compare(password, candidate.password);
 
-      console.log(candidate);
       if (areSame) {
         req.session.user = candidate;
         req.session.isAuthenticated = true;
@@ -159,7 +157,6 @@ router.post("/password", async (req, res) => {
       resetTokenExp: { $gt: Date.now() },
     });
 
-    console.log(user);
 
     if (user) {
       user.password = await bcrypt.hash(req.body.password, 10);
