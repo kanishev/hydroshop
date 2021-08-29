@@ -15,6 +15,10 @@ const user = new Schema({
   },
   resetToken: String,
   resetTokenExp: Date,
+  role: {
+    type: String,
+    default: 'USER'
+  },
   cart: {
     items: [
       {

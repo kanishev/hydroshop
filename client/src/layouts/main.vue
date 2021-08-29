@@ -201,7 +201,9 @@
                 type="text"
                 placeholder="введите ваш email"
               />
-              <app-button class="footer-form__btn" type="submit">отправить</app-button>
+              <app-button class="footer-form__btn" type="submit"
+                >отправить</app-button
+              >
             </form>
           </div>
           <div class="footer__top-item footer__top-item__list">
@@ -277,6 +279,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+      this.$router.push("/auth");
     },
   },
   components: { Navbar, MenuCategories },

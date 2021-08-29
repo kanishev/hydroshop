@@ -73,21 +73,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 
-  // setTimeout(() => console.log(router.app.$store), 1000)
-  next()
-  // console.log('ROUTER', store.state.user)
-  // setTimeout(() => {console.log('ROUTER', store.state.user)}, 1000)
-  // next()
+  const user = localStorage.getItem('user')
+  console.log(user)
+  const isRequireUser = to.matched.some(record => record.meta.admin)
 
-  // const user = firebase.auth().currentUser
-  // const isRequireUser = to.matched.some(record => record.meta.admin)
-
-  // if (isRequireUser && store.state.user == 'client@mail.ru') {
-  //   next('/auth')
-  // } else {
-  //   console.log('ELSE')
-  //   next()
-  // }
+  if (isRequireUser && user !== 'ADMIN') {
+    next('/auth')
+  } else {
+    next()
+  }
 
   // store.dispatch('getUser').then(() => {
   //   const user = store.state.user

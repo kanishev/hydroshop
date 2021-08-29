@@ -38,16 +38,26 @@ router.post("/login", async (req, res) => {
           }
           // req.flash('error', 'Регистрация прошла успешно')
           return res.json({
-            message: "Пользователь вошел в систему",
-            user: req.session.user.email,
+            message: {
+              value: "Пользователь вошел в систему",
+              type: "success"
+            },
+            user: req.session.user.role,
           });
         });
       } else {
-        return res.json({ message: "Неверный пароль" });
+        return res.json({ message: {
+          value: "Неверный пароль",
+          type: 'error'
+        }});
       }
     } else {
       // req.flash('error', 'Регистрация прошла успешно')
       res.json({ message: "Необходимо сперва зарегистрироваться" });
+      return res.json({ message: {
+        value: "Необходимо сперва зарегистрироваться",
+        type: 'warn'
+      }});
       //redirect register
     }
   } catch (e) {
@@ -71,7 +81,7 @@ router.post("/register", async (req, res) => {
 
     if (candidate) {
       // req.flash('error', 'Пользователь уже существует')
-      res.json({ message: "Пользователь уже существует" });
+      return res.json({ message: "Пользователь уже существует" });
       // redirect login
     } else {
       if (password !== confirm) {
@@ -83,6 +93,7 @@ router.post("/register", async (req, res) => {
         name,
         password: hashPassword,
         cart: { items: [] },
+        role: email === 'admin@mail.ru' ? 'ADMIN' : 'USER'
       });
       await user.save();
 
@@ -90,7 +101,7 @@ router.post("/register", async (req, res) => {
 
       await transporter.sendMail(reqEmail(email));
       // req.flash('error', 'Регистрация прошла успешно')
-      res.json({ message: "Регистрация прошла успешно" });
+      return res.json({ message: "Регистрация прошла успешно" });
       // redirect login
     }
   } catch (e) {

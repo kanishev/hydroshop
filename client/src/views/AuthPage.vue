@@ -91,6 +91,8 @@ export default {
         password: this.password,
       });
       const data = await res.data;
+      this.$store.commit("setMessage", data.message);
+
       if (data.user) {
         this.$store.commit("setUser", data.user);
         this.$router.push("/");
@@ -104,7 +106,7 @@ export default {
         name: this.username,
       });
       const data = await res.data;
-      console.log(data.user);
+      console.log(data);
     },
   },
 };
