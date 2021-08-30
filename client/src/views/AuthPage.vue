@@ -5,6 +5,7 @@
         <div class="auth__content">
           <a href="" class="auth__close">&times;</a>
 
+          <app-loader v-if="loader"></app-loader>
           <div class="auth__forms">
             <form class="auth__form" id="login-form" @submit.prevent="login">
               <h2 class="auth__title">Login</h2>
@@ -24,7 +25,9 @@
                 name="password"
                 required
               />
-              <app-button class="auth__btn" type="submit">Login</app-button>
+              <app-button class="auth__btn" type="submit" :disabled="loader"
+                >Login</app-button
+              >
             </form>
 
             <form id="register-form" @submit.prevent="register">
@@ -61,7 +64,9 @@
                 name="registerConfirm"
                 required
               />
-              <app-button class="auth__btn" type="submit">Register</app-button>
+              <app-button class="auth__btn" type="submit" :disabled="loader"
+                >Register</app-button
+              >
             </form>
           </div>
         </div>
@@ -76,6 +81,7 @@ export default {
   props: ["isPopup"],
   data() {
     return {
+      loader: false,
       email: "",
       password: "",
       username: "",
@@ -86,12 +92,15 @@ export default {
   },
   methods: {
     async login() {
+      this.loader = true;
+
       const res = await axios.post("/auth/login", {
         email: this.email,
         password: this.password,
       });
       const data = await res.data;
       this.$store.commit("setMessage", data.message);
+      this.loader = false;
 
       if (data.user) {
         this.$store.commit("setUser", data.user);
@@ -99,14 +108,15 @@ export default {
       }
     },
     async register() {
+      this.loader = true;
       const res = await axios.post("/auth/register", {
         email: this.registerEmail,
         password: this.registerPassword,
         confirm: this.registerConfirm,
         name: this.username,
       });
-      const data = await res.data;
-      console.log(data);
+      await res.data;
+      this.loader = false;
     },
   },
 };

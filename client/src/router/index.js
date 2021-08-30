@@ -82,24 +82,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
-
-  // store.dispatch('getUser').then(() => {
-  //   const user = store.state.user
-  //   const isRequireUser = to.matched.some(record => record.meta.admin)
-
-
-  //   if(isRequireUser && user !== 'admin@mail.ru') {
-  //     next('/auth')
-  //   } else {
-  //     next()
-  //   }
-  // }).catch(error => {
-  //   console.log(error)
-    // if (!error.message.includes('Could not find stored JWT')) {
-    //   console.log('Authentication error', error)
-    // }
-    // (to.meta.requiresAuth) ? next('/inicio-sesion') : next()
-  // })
 })
 
 

@@ -84,6 +84,10 @@ table td {
   background: #1c62cd;
 }
 
+.btn:disabled {
+  background:#b0bec2;
+}
+
 .table-date {
   display: flex;
   justify-content: space-between;

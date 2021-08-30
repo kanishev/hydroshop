@@ -53,7 +53,6 @@ router.post("/login", async (req, res) => {
       }
     } else {
       // req.flash('error', 'Регистрация прошла успешно')
-      res.json({ message: "Необходимо сперва зарегистрироваться" });
       return res.json({ message: {
         value: "Необходимо сперва зарегистрироваться",
         type: 'warn'
