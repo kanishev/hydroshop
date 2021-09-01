@@ -16,15 +16,12 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.user = user;
-      console.log(user)
     },
     setMessage(state, {type, value}){
-      console.log('set message')
       state.message.type = type;
       state.message.value = value;
     },
     clearMessage(state){
-      console.log('clear')
       state.message.type = null;
       state.message.value = null;
     }
@@ -36,7 +33,12 @@ export default new Vuex.Store({
         let user = data.role;
 
         ctx.commit("setUser", user);
-        localStorage.setItem("user", JSON.stringify(user));
+
+        if (!user){
+          localStorage.removeItem('user');
+        } else {
+          localStorage.setItem("user", JSON.stringify(user));
+        }
 
       } catch (e) {
         console.log(e);

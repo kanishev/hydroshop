@@ -3,7 +3,6 @@ const Product = require("../models/product");
 const router = Router();
 
 router.get("/", async (req, res) => {
-  console.log('FETCH PRODUCT')
   const products = await Product.find();
   return res.json(products);
 });

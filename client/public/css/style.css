@@ -528,6 +528,9 @@ table td {
 }
 
 .product-item {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   border: 1px solid #cdcdcd;
   border-radius: 3px;
   min-height: 410px;

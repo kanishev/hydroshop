@@ -11,10 +11,14 @@ export default {
   },
   actions: {
     async getProducts(ctx) {
-      console.log("GET PRODUCTS CLIENT");
       try {
-        let { data } = await axios.get("/products");
-        ctx.commit("setProducts", data);
+        const { data } = await axios.get("/products");
+        let products = data.reduce((acc, el) => {
+          const imgArr = el.img.split('/')
+          el.img = imgArr[imgArr.length - 1]
+          return [...acc, el]
+        }, [])
+        ctx.commit("setProducts", products);
       } catch (e) {
         console.log(e);
       }

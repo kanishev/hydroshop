@@ -59,107 +59,16 @@ import ProductItem from "../components/Product/ProdutItem.vue";
 import AsideFilter from "../components/Filter/AsideFilter.vue";
 
 export default {
-  computed: {
-    products() {
-      console.log(this.$store.getters.getProducts);
-
-      return this.$store.getters.getProducts;
-    },
-  },
   mounted() {
     this.$store.dispatch("getProducts");
   },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
+  },
   data() {
-    return {
-      catalog: [
-        {
-          title: "Гидроцикл BRP SeaDoo GTI 130hp SE BlackMango ",
-          src: "../../images/catalog/hydro-product-1.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-        {
-          title: " Гидроцикл BRP SeaDoo GTI 155hp SE Long Blue Metallic ",
-          src: "../../images/catalog/hydro-product-1.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-        {
-          title: " Гидроцикл BRP SeaDoo GTR 230hp X California green  ",
-          src: "../../images/catalog/hydro-product-2.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "  Гидроцикл BRP SeaDoo GTR 230hp STD Black / Gulfstream ",
-          src: "../../images/catalog/hydro-product-3.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "  Гидроцикл BRP SeaDoo GTX 300hp LTD Liquid Metal   ",
-          src: "../../images/catalog/hydro-product-4.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "  Гидроцикл BRP SeaDoo Spark 60hp 2 up   ",
-          src: "../../images/catalog/hydro-product-5.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-
-        {
-          title: "   Гидроцикл BRP SeaDoo Spark GTS 90hp Rental  ",
-          src: "../../images/catalog/hydro-product-6.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-        {
-          title: "   Гидроцикл BRP SeaDoo WAKE 230hp PRO Teal blue   ",
-          src: "../../images/catalog/hydro-product-7.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-        {
-          title: "   Гидроцикл Spark 2-UP 900 Ho Ace Chili Pepper   ",
-          src: "../../images/catalog/hydro-product-8.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-
-        {
-          title: "   Гидроцикл Spark 2-UP 900 Ho Ace Pineapple   ",
-          src: "../../images/catalog/hydro-product-10.png",
-          price: 1049500,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "    Гидроцикл BRP Sea-doo Spark 2-UP 900 Ace Vanilla ",
-          src: "../../images/catalog/hydro-product-11.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-        {
-          title: "   Гидроцикл Spark 3-UP 900 HO Ace IBR Blueberry  ",
-          src: "../../images/catalog/hydro-product-12.png",
-          price: 1049500,
-          available: false,
-          sale: false,
-        },
-      ],
-    };
+    return {};
   },
   components: { Pagination, ProductItem, AsideFilter },
 };

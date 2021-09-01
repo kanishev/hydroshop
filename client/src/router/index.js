@@ -1,5 +1,4 @@
 import Vue from "vue";
-// import store from '../store/index.js'
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Catalog from "../views/Catalog.vue";
@@ -74,10 +73,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
   const user = localStorage.getItem('user')
-  console.log(user)
   const isRequireUser = to.matched.some(record => record.meta.admin)
 
-  if (isRequireUser && user !== 'ADMIN') {
+  if (isRequireUser && JSON.parse(user) !== 'ADMIN') {
     next('/auth')
   } else {
     next()
