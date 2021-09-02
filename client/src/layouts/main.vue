@@ -161,6 +161,11 @@
         <div class="menu__mobile-line__wrapper">
           <ul class="menu-mobile__line">
             <li class="menu__item">
+              <router-link class="menu__link" to="/catalog">
+                <span>Каталог</span>
+              </router-link>
+            </li>
+            <li class="menu__item">
               <a class="menu__link" href="">
                 <span>Магазины</span>
               </a>

@@ -7,7 +7,7 @@
     <div class="catalog__inner-list">
       <catalog-item
         v-for="product in products"
-        :key="product.title"
+        :key="product.id"
         :product="product"
       >
         <p v-if="!product.available" class="product-item__notify">

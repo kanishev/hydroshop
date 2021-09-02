@@ -11,7 +11,7 @@
     >
       <a class="product-item__hover-text">посмотреть товар</a>
       <img
-        :src="require(`../images/catalog/${product.img}`)"
+        :src="require('../images/catalog/' + product.img)"
         alt=""
         class="product-item__img"
       />

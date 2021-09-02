@@ -7,6 +7,19 @@
         <legend>Создать продукт:</legend>
 
         <div>
+          <select name="product" @change="selectProduct" v-model="select">
+            <option disabled selected>Выберите товар</option>
+            <option
+              v-for="product in products"
+              :key="product.item"
+              :value="product.title"
+            >
+              {{ product.title }}
+            </option>
+          </select>
+        </div>
+
+        <div>
           <label for="title">Название продукта:</label>
           <input
             type="text"
@@ -98,7 +111,7 @@
 
         <div>
           <span>Аватар</span>
-          <input ref="file" type="file" name="product" />
+          <input ref="file" type="file" name="product" @change="setImage" />
         </div>
 
         <button type="submit" class="btn" @click="type = 'create'">
@@ -114,14 +127,16 @@
       <fieldset>
         <legend>Удалить продукт</legend>
         <div>
-          <input
-            type="text"
-            placeholder=""
-            name="title"
-            id="title"
-            v-model="removeName"
-          />
-          <label for="title">Название продукта</label>
+          <select name="product" @change="selectProduct" v-model="select">
+            <option disabled selected>Выберите товар</option>
+            <option
+              v-for="product in products"
+              :key="product.item"
+              :value="product.title"
+            >
+              {{ product.title }}
+            </option>
+          </select>
         </div>
         <app-button type="submit">удалить продукт</app-button>
       </fieldset>
@@ -133,9 +148,19 @@
 import axios from "axios";
 
 export default {
+  mounted() {
+    const products = this.$store.getters.getProducts;
+
+    if (!products) {
+      this.$store.dispatch("getProducts");
+    } else {
+      this.$store.getters.getProducts;
+    }
+  },
   data() {
     return {
-      type: "",
+      type: null,
+      select: "Выберите товар",
 
       productName: "",
       productPrice: "",
@@ -144,9 +169,15 @@ export default {
       productSale: "",
       productAvailable: "",
       productImage: "",
+      productId: "",
 
       removeName: "",
     };
+  },
+  computed: {
+    products() {
+      return this.$store.getters.getProducts;
+    },
   },
   methods: {
     async submitForm() {
@@ -154,7 +185,7 @@ export default {
       let fd = new FormData();
       fd.append("product", file);
 
-      await axios.post(`/admin/${this.type}`, {
+      let { data } = await axios.post(`/admin/${this.type}`, {
         title: this.productName,
         price: this.productPrice,
         rate: this.productRate,
@@ -162,18 +193,39 @@ export default {
         sale: this.productSale === "sale" ? true : false,
         available: this.productAvailable === "available" ? true : false,
         img: this.productImage,
+        id: this.productId,
       });
 
       await axios.post("admin/image", fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      if (data.message) {
+        this.$store.commit("setMessage", data.message);
+      }
     },
     async removeProduct() {
       const res = await axios.post("/admin/remove", {
-        id: "611c0f1130639a317465aca7",
+        id: this.productId,
       });
 
       console.log(res);
+    },
+    selectProduct() {
+      const products = this.$store.getters.getProducts;
+      const product = products.find((el) => el.title == this.select);
+
+      this.productName = product.title;
+      this.productPrice = product.price;
+      this.productRate = product.rate;
+      this.productBrand = product.brand;
+      this.productSale = product.sale == true ? "sale" : "primary";
+      this.productAvailable =
+        product.available == true ? "available" : "notAvailable";
+      this.productId = product._id;
+    },
+    setImage() {
+      this.productImage = this.$refs.file.files[0].name;
     },
   },
 };

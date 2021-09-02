@@ -32,11 +32,9 @@ router.post("/create", async (req, res) => {
 router.post("/edit", async (req, res) => {
   try {
 
-    let title = req.body.title
-    console.log(title)
-    const product = await Product.findOneAndUpdate(title, req.body)
+    await Product.findByIdAndUpdate(req.body.id, req.body);
+    console.log(req.body)
 
-    console.log(product)
     return res.json({ message: {
       value: 'Товар успешно изменен',
       type: 'success'
