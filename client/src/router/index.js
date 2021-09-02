@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from '../store/index'
 import Home from "../views/Home.vue";
 import Catalog from "../views/Catalog.vue";
 import ProductPage from "../views/ProductPage.vue";
@@ -76,6 +77,10 @@ router.beforeEach((to, from, next) => {
   const isRequireUser = to.matched.some(record => record.meta.admin)
 
   if (isRequireUser && JSON.parse(user) !== 'ADMIN') {
+    store.commit("setMessage", {
+      value: "Сперва необходимо залогиниться под админом",
+      type: "error",
+    });
     next('/auth')
   } else {
     next()

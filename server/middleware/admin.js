@@ -1,6 +1,9 @@
 module.exports = function (req, res, next) {
   if (!req.session.isAuthenticated) {
-    res.json({ message: "Сперва необходимо залогиниться под админом" });
+    res.json({ message: {
+      value: "Сперва необходимо залогиниться под админом",
+      type: "error"
+    } });
     return res.redirect("/auth");
   }
 

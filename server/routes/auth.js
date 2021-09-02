@@ -8,7 +8,6 @@ const crypto = require("crypto");
 const keys = require("../keys/index");
 const reqEmail = require("../emails/registration");
 const resetEmail = require("../emails/reset");
-const Product = require("../models/product");
 const router = Router();
 
 const transporter = nodemailer.createTransport(
@@ -67,7 +66,10 @@ router.post("/login", async (req, res) => {
 router.get("/logout", async (req, res) => {
   req.session.destroy(() => {
     // req.flash('error', 'Пользователь уже существует')
-    res.json({ message: "Пользователь вышел из системы" });
+    return res.json({ message: {
+      value: "Пользователь вышел из системы",
+      type: 'warn'
+    }});
     // res.redirect("/auth");
   });
 });
@@ -80,11 +82,17 @@ router.post("/register", async (req, res) => {
 
     if (candidate) {
       // req.flash('error', 'Пользователь уже существует')
-      return res.json({ message: "Пользователь уже существует" });
+      return res.json({ message: {
+        value: "Пользователь уже существует",
+        type: 'warn'
+      } });
       // redirect login
     } else {
       if (password !== confirm) {
-        return res.json({ message: "Пароли должны совпадать" });
+        return res.json({ message: {
+          value: "Пароли должны совпадать",
+          type: 'warn'
+        } });
       }
       const hashPassword = await bcrypt.hash(password, 10);
       const user = new User({
@@ -100,7 +108,10 @@ router.post("/register", async (req, res) => {
 
       await transporter.sendMail(reqEmail(email));
       // req.flash('error', 'Регистрация прошла успешно')
-      return res.json({ message: "Регистрация прошла успешно" });
+      return res.json({ message: {
+        value: "Регистрация прошла успешно",
+        type: 'success'
+      } });
       // redirect login
     }
   } catch (e) {

@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Страница администратора</h1>
 
-    <form @submit.prevent="createProduct" enctype="multipart/form-data">
+    <form @submit.prevent="submitForm" enctype="multipart/form-data">
       <fieldset>
         <legend>Создать продукт:</legend>
 
@@ -98,49 +98,17 @@
 
         <div>
           <span>Аватар</span>
-          <input ref="file" type="file" name="product" @change="fileChange" />
+          <input ref="file" type="file" name="product" />
         </div>
 
-        <button type="submit" class="btn">Создать</button>
+        <button type="submit" class="btn" @click="type = 'create'">
+          Создать
+        </button>
+        <button type="submit" class="btn" @click="type = 'edit'">
+          Изменить
+        </button>
       </fieldset>
     </form>
-
-    <!-- <form action="">
-        <fieldset>
-        <legend>Изменить продукт:</legend>
-
-        <input type="text" placeholder="" name="title" id="title"/>
-        <label for="title">Название продукта</label>
-
-        <input type="number" placeholder="" name="price" id="price"/>
-        <label for="price">Цена продукта</label>
-
-        <input type="text" placeholder="" name="brand" id="brand"/>
-        <label for="brand">Бренд продукта</label>
-
-        <input type="number" placeholder="" name="rate" id="rate"/>
-        <label for="rate">Рейтинг продукта</label>
-
-       <input type="radio" id="available"
-        name="available">
-        <label for="available">В наличии</label>
-
-        <input type="radio" id="notAvailable"
-        name="available">
-        <label for="notAvailable">Не в наличии</label>
-
-
-        <input type="radio" id="sale"
-        name="sale" value="sale">
-        <label for="sale">Распродажа</label>
-
-        <input type="radio" id="notSale"
-        name="sale">
-        <label for="notSale">Обычная цена</label>
-        <button type="submit">изменить продукт</button>
-
-        </fieldset>
-    </form> -->
 
     <form @submit.prevent="removeProduct">
       <fieldset>
@@ -167,6 +135,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+      type: "",
+
       productName: "",
       productPrice: "",
       productRate: "",
@@ -179,12 +149,12 @@ export default {
     };
   },
   methods: {
-    async createProduct() {
+    async submitForm() {
       let file = this.$refs.file.files[0];
       let fd = new FormData();
       fd.append("product", file);
 
-      await axios.post("/admin/create", {
+      await axios.post(`/admin/${this.type}`, {
         title: this.productName,
         price: this.productPrice,
         rate: this.productRate,
@@ -204,9 +174,6 @@ export default {
       });
 
       console.log(res);
-    },
-    fileChange(e) {
-      this.productImage = e.target.files[0].name;
     },
   },
 };

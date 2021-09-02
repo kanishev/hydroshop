@@ -97,6 +97,7 @@
 import FilterSelect from "../Filter/FilterSelect.vue";
 import FilterSale from "../Filter/FilterSale.vue";
 export default {
+  name: "aside-filter",
   components: { FilterSelect, FilterSale },
 };
 </script>

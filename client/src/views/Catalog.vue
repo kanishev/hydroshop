@@ -28,26 +28,8 @@
         </div>
       </div>
 
-      <div class="catalog__inner">
-        <button class="aside__btn">фильтр</button>
+      <Catalog :products="products" />
 
-        <aside-filter></aside-filter>
-
-        <div class="catalog__inner-list">
-          <product-item
-            v-for="product in products"
-            :key="product.title"
-            :product="product"
-          >
-            <p v-if="!product.available" class="product-item__notify">
-              нет в наличии
-            </p>
-            <p v-else class="price product-item__price">
-              {{ product.price }} Р
-            </p>
-          </product-item>
-        </div>
-      </div>
       <Pagination />
     </div>
   </section>
@@ -55,12 +37,17 @@
 
 <script>
 import Pagination from "../components/Pagination.vue";
-import ProductItem from "../components/Product/ProdutItem.vue";
-import AsideFilter from "../components/Filter/AsideFilter.vue";
+import Catalog from "../components/Catalog.vue";
 
 export default {
   mounted() {
-    this.$store.dispatch("getProducts");
+    const products = this.$store.getters.getProducts;
+
+    if (!products) {
+      this.$store.dispatch("getProducts");
+    } else {
+      this.$store.getters.getProducts;
+    }
   },
   computed: {
     products() {
@@ -70,7 +57,7 @@ export default {
   data() {
     return {};
   },
-  components: { Pagination, ProductItem, AsideFilter },
+  components: { Pagination, Catalog },
 };
 </script>
 

@@ -94,11 +94,10 @@ export default {
     async login() {
       this.loader = true;
 
-      const res = await axios.post("/auth/login", {
+      const { data } = await axios.post("/auth/login", {
         email: this.email,
         password: this.password,
       });
-      const data = await res.data;
       this.$store.commit("setMessage", data.message);
       this.loader = false;
 
@@ -109,13 +108,13 @@ export default {
     },
     async register() {
       this.loader = true;
-      const res = await axios.post("/auth/register", {
+      const { data } = await axios.post("/auth/register", {
         email: this.registerEmail,
         password: this.registerPassword,
         confirm: this.registerConfirm,
         name: this.username,
       });
-      await res.data;
+      this.$store.commit("setMessage", data.message);
       this.loader = false;
     },
   },

@@ -31,11 +31,16 @@ router.post("/create", async (req, res) => {
 
 router.post("/edit", async (req, res) => {
   try {
-    const { id } = req.body;
-    delete req.body.id;
 
-    await Product.findByIdAndUpdate(id, req.body);
-    res.json({ message: "UPDATED" });
+    let title = req.body.title
+    console.log(title)
+    const product = await Product.findOneAndUpdate(title, req.body)
+
+    console.log(product)
+    return res.json({ message: {
+      value: 'Товар успешно изменен',
+      type: 'success'
+    } });
   } catch (e) {
     console.log(e);
   }
