@@ -6,6 +6,7 @@ export default {
   },
   mutations: {
     setProducts(state, products) {
+      console.log('SET')
       state.products = products;
     },
   },
@@ -40,6 +41,7 @@ export default {
   },
   getters: {
     getProducts(state) {
+      console.log('GET')
       return state.products;
     },
   },

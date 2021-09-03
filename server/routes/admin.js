@@ -32,8 +32,17 @@ router.post("/create", async (req, res) => {
 router.post("/edit", async (req, res) => {
   try {
 
-    await Product.findByIdAndUpdate(req.body.id, req.body);
-    console.log(req.body)
+    const product = await  Product.findById(req.body.id)
+
+    const body = req.body;
+
+    for (let key in body){
+      if (!body[key]){
+        body[key] = product[key]
+      }
+    }
+
+    await Product.findByIdAndUpdate(req.body.id, Object.assign(product, body));
 
     return res.json({ message: {
       value: 'Товар успешно изменен',
@@ -57,15 +66,7 @@ router.post("/remove", async (req, res) => {
 });
 
 router.post("/image", async (req, res, next) => {
-  // return res.json(req.file);
-  console.log("IMG", req.file)
   return res.json(req.file);
 });
-
-// router.get("/image", async (req, res) => {
-//   console.log('SEND')
-//   res.set({'Content-Type': 'image/jpg'});
-//   res.sendFile(path.join(__dirname, '../images/1629053766056-unnamed.jpg'));
-// });
 
 module.exports = router;

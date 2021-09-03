@@ -114,12 +114,14 @@
           <input ref="file" type="file" name="product" @change="setImage" />
         </div>
 
-        <button type="submit" class="btn" @click="type = 'create'">
-          Создать
-        </button>
-        <button type="submit" class="btn" @click="type = 'edit'">
-          Изменить
-        </button>
+        <div class="form-btn">
+          <button type="submit" class="btn" @click="type = 'create'">
+            Создать
+          </button>
+          <button type="submit" class="btn" @click="type = 'edit'">
+            Изменить
+          </button>
+        </div>
       </fieldset>
     </form>
 
@@ -127,7 +129,11 @@
       <fieldset>
         <legend>Удалить продукт</legend>
         <div>
-          <select name="product" @change="selectProduct" v-model="select">
+          <select
+            name="removeProduct"
+            @change="selectProduct"
+            v-model="removeSelect"
+          >
             <option disabled selected>Выберите товар</option>
             <option
               v-for="product in products"
@@ -153,14 +159,13 @@ export default {
 
     if (!products) {
       this.$store.dispatch("getProducts");
-    } else {
-      this.$store.getters.getProducts;
     }
   },
   data() {
     return {
       type: null,
       select: "Выберите товар",
+      removeSelect: "Выберите товар",
 
       productName: "",
       productPrice: "",
@@ -176,6 +181,7 @@ export default {
   },
   computed: {
     products() {
+      console.log(this.$store.getters.getProducts);
       return this.$store.getters.getProducts;
     },
   },
@@ -203,6 +209,34 @@ export default {
       if (data.message) {
         this.$store.commit("setMessage", data.message);
       }
+
+      const products = this.$store.getters.getProducts;
+
+      if (this.type == "create") {
+        products.push({
+          _id: this.productId,
+          title: this.productName,
+          brand: this.productBrand,
+          rate: this.productRate,
+          sale: this.productSale,
+          available: this.productAvailable,
+          img: this.productImage,
+          price: this.productPrice,
+        });
+      } else if (this.type == "edit") {
+        const index = products.findIndex((p) => p._id == this.productId);
+        products[index] = {
+          _id: this.productId,
+          title: this.productName,
+          brand: this.productBrand,
+          rate: this.productRate,
+          sale: this.productSale,
+          available: this.productAvailable,
+          img: this.productImage,
+          price: this.productPrice,
+        };
+      }
+      this.$store.commit("setProducts", products);
     },
     async removeProduct() {
       const res = await axios.post("/admin/remove", {
@@ -253,5 +287,9 @@ label {
 label.light {
   font-weight: 300;
   display: inline;
+}
+
+button {
+  margin-right: 10px;
 }
 </style>
