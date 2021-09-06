@@ -42,6 +42,7 @@ const routes = [
     component: CartPage,
     meta: {
       layout: "main",
+      auth: true
     },
   },
   {
@@ -58,7 +59,7 @@ const routes = [
     component: AdminPage,
     meta: {
       layout: "main",
-      admin: true
+      admin: true,
     },
   },
 ];
@@ -75,14 +76,25 @@ router.beforeEach((to, from, next) => {
 
   const user = localStorage.getItem('user')
   const isRequireUser = to.matched.some(record => record.meta.admin)
+  const isAuthRequired = to.matched.some(record => record.meta.auth)
 
-  if (isRequireUser && JSON.parse(user) !== 'ADMIN') {
+  if (isRequireUser && JSON.parse(user).role !== 'ADMIN') {
     store.commit("setMessage", {
       value: "Сперва необходимо залогиниться под админом",
       type: "error",
     });
     next('/auth')
-  } else {
+  }
+
+  if (isAuthRequired && JSON.parse(user).role == "NOT_AUTH"){
+    store.commit("setMessage", {
+      value: "Сперва необходимо залогиниться",
+      type: "error",
+    });
+    next('/auth')
+  }
+
+  else {
     next()
   }
 })

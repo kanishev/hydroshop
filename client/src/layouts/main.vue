@@ -6,9 +6,9 @@
           <div class="header__top-inner">
             <Navbar />
 
-            <a class="logo" href="#">
+            <router-link class="logo" to="/">
               <img class="logo__img" src="../assets/icons/logo.svg" alt="" />
-            </a>
+            </router-link>
             <div class="header__box">
               <a class="header__adress" href="">Москва, ул. Науки 25</a>
               <ul class="user-list">
@@ -17,12 +17,15 @@
                     <img src="../assets/icons/heart.svg" alt="" />
                   </a>
                 </li>
-                <li class="user-list__item" v-if="!user">
+                <li class="user-list__item" v-if="user.role == 'NOT_AUTH'">
                   <router-link class="user-list__link" to="/auth">
                     <img src="../assets/icons/user.svg" alt="" />
                   </router-link>
                 </li>
-                <li class="user-list__item" v-if="user">
+                <li
+                  class="user-list__item"
+                  v-if="user.role == 'USER' || user.role == 'ADMIN'"
+                >
                   <a
                     class="user-list__link"
                     to="/auth/logout"
@@ -31,10 +34,15 @@
                     <img src="../assets/icons/logout.svg" alt="" />
                   </a>
                 </li>
+                <li class="user-list__item" v-if="user === 'ADMIN'">
+                  <router-link class="user-list__link" to="/admin">
+                    <img src="../assets/icons/admin.svg" alt="" />
+                  </router-link>
+                </li>
                 <li class="user-list__item">
                   <router-link class="user-list__link cart" to="cart">
                     <img src="../assets/icons/cart.svg" alt="" />
-                    <p class="cart__num">1</p>
+                    <p class="cart__num">{{ totalCartProducts }}</p>
                   </router-link>
                 </li>
               </ul>
@@ -278,7 +286,12 @@ export default {
   },
   computed: {
     user() {
+      console.log("USER");
       return this.$store.getters.getUser;
+    },
+    totalCartProducts() {
+      const { cart } = this.$store.getters.getUser;
+      return cart.items.reduce((acc, p) => acc + p.count, 0);
     },
   },
   methods: {

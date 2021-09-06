@@ -11,15 +11,20 @@ export default new Vuex.Store({
     message: {
       type: null,
       value: null
-    }
+    },
   },
   mutations: {
     setUser(state, user) {
+      console.log('SET', user)
       state.user = user;
+      localStorage.setItem("user", JSON.stringify(user));
     },
     setMessage(state, {type, value}){
       state.message.type = type;
       state.message.value = value;
+    },
+    setCart(state, cart){
+      state.cart = cart;
     },
     clearMessage(state){
       state.message.type = null;
@@ -30,21 +35,27 @@ export default new Vuex.Store({
     async getUser(ctx) {
       try {
         let { data } = await axios.get("/auth");
-        let user = data.role;
-
-        ctx.commit("setUser", user);
-
-        if (!user){
-          localStorage.removeItem('user');
+        if (!data){
+          const user = {
+            role: "NOT_AUTH",
+            cart: {
+              items: []
+            }
+          }
+          ctx.commit('setUser', user)
         } else {
-          localStorage.setItem("user", JSON.stringify(user));
+          ctx.commit("setUser", data);
+          localStorage.setItem("user", JSON.stringify(data));
         }
+
 
       } catch (e) {
         console.log(e);
       }
     },
-    login() {},
+    login() {
+
+    },
     async logout(ctx) {
       await axios.get("/auth/logout");
       ctx.commit("setUser", null);
@@ -53,11 +64,15 @@ export default new Vuex.Store({
   },
   getters: {
     getUser(state) {
+
+      if(!state.user){
+        return JSON.parse(localStorage.getItem('user'));
+      }
       return state.user;
     },
     getMessage(state){
       return state.message;
-    }
+    },
   },
   modules: {
     products,

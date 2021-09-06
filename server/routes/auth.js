@@ -16,8 +16,9 @@ const transporter = nodemailer.createTransport(
   })
 );
 
-router.get("/", (req, res) => {
-  return res.json(req.session.user);
+router.get("/", async (req, res) => {
+  const user = await User.findOne({ email: req.session.user.email });
+  return res.json(user);
 });
 
 router.post("/login", async (req, res) => {
@@ -39,6 +40,7 @@ router.post("/login", async (req, res) => {
           return res.json({
             message: {
               value: "Пользователь вошел в систему",
+              user: req.session.user,
               type: "success"
             },
             user: req.session.user.role,

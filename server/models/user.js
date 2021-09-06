@@ -57,12 +57,18 @@ user.methods.addToCart = function (product) {
   return this.save();
 };
 
-user.methods.removeFromCart = function (id) {
+user.methods.removeFromCart = function (id, exact) {
+
   let items = [...this.cart.items];
 
+  if (exact){
+    items = items.filter((p) => p.productId.toString() !== id.toString());
+    this.cart = { items };
+    return this.save();
+  }
+
+
   const idx = items.findIndex((p) => {
-    console.log(p);
-    console.log(id);
     return p.productId.toString() === id.toString();
   });
 

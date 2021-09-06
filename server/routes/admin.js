@@ -21,9 +21,15 @@ router.post("/create", async (req, res) => {
     userId: req.user,
   });
 
+  const products = await Product.find()
+
+
   try {
     await product.save();
-    res.json(product);
+    res.json({products, message: {
+      value: 'Товар успешно создан',
+      type: 'success'
+    }});
   } catch (e) {
     console.log(e);
   }
@@ -33,7 +39,6 @@ router.post("/edit", async (req, res) => {
   try {
 
     const product = await  Product.findById(req.body.id)
-
     const body = req.body;
 
     for (let key in body){
@@ -43,11 +48,13 @@ router.post("/edit", async (req, res) => {
     }
 
     await Product.findByIdAndUpdate(req.body.id, Object.assign(product, body));
+    const products = await Product.find()
 
     return res.json({ message: {
       value: 'Товар успешно изменен',
       type: 'success'
-    } });
+    },
+  products });
   } catch (e) {
     console.log(e);
   }
@@ -59,7 +66,12 @@ router.post("/remove", async (req, res) => {
       _id: req.body.id,
     });
 
-    res.json({ message: "DELETED" });
+    const products = await Product.find()
+
+    res.json({ products,message: {
+      value: 'Товар был удален',
+      type: 'success'
+    } });
   } catch (e) {
     console.log(e);
   }

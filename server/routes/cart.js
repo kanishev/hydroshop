@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Cart = require("../models/cart");
+const User = require("../models/user")
 const Product = require("../models/product");
 const router = Router();
 
@@ -11,38 +12,27 @@ function mapCartProducts(cart) {
   }));
 }
 
-// function computePrice(products) {
-//   return products.reduce((acc, el) => {
-//     return acc+= el.price * el.count;
-//   }, 0)
-// }
-
 router.post("/add", async (req, res) => {
   const product = await Product.findById(req.body.id);
-  console.log(req.user);
   await req.user.addToCart(product);
-  res.json({ message: "Создано" });
+
+  const {cart} = await User.findOne({ email: req.session.user.email });
+
+  res.json({cart, message: {
+    value: 'Товар добавлен в корзину',
+    type: 'success'
+  }});
 });
 
 router.get("/", async (req, res) => {
   const user = await req.user.populate("cart.items.productId").execPopulate();
-  const products = mapCartProducts(user.cart);
-  res.json(products);
+  const cart = mapCartProducts(user.cart);
+  return res.json(cart);
 });
 
-router.delete("/remove/:id", async (req, res) => {
-  await req.user.removeFromCart(req.params.id);
-  const user = await req.user.populate("cart.items.productId").execPopulate();
-  const products = mapCartProducts(user.cart);
-
-  // const cart = {
-  //   products,
-  //   price: computePrice(products),
-  // };
-
-  console.log(user);
-
-  res.json({ message: "Delete one" });
+router.post("/remove", async (req, res) => {
+  await req.user.removeFromCart(req.body.id, req.body.exact);
+  return res.json({ message: "Delete one" });
 });
 
 module.exports = router;

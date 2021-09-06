@@ -1,7 +1,7 @@
 <template>
   <div class="product-item__wrapper">
     <button class="product-item__favourite"></button>
-    <button class="product-item__cart">
+    <button class="product-item__cart" @click="addToCart(product._id)">
       <img src="../assets/icons/cart-white.svg" alt="cart" />
     </button>
     <a
@@ -23,12 +23,24 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["product"],
   name: "catalog-item",
   methods: {
     openProduct(id) {
       this.$router.push(`products/${id}`);
+    },
+    async addToCart(id) {
+      let user = this.$store.getters.getUser;
+
+      const { data } = await axios.post("/cart/add", { id });
+
+      user.cart = data.cart;
+
+      this.$store.commit("setUser", Object.assign({}, user));
+      this.$store.commit("setMessage", data.message);
     },
   },
 };

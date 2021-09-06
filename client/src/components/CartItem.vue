@@ -1,34 +1,42 @@
 <template>
   <div class="cart-item">
     <div class="cart-item__image">
-      <img src="../images/catalog/hydro-product-1.png" alt="" />
+      <img :src="`../images/catalog/${product.img}`" alt="" />
     </div>
     <div class="cart-item__info">
       <p class="cart-item__info-name">
-        Гидроцикл BRP SeaDoo GTI 130hp SE BlackMango
+        {{ product.title }}
       </p>
-      <p class="cart-item__info-price">1 100 475 Р</p>
-    </div>
-    <div class="cart-item__info-article">
-      <product-info></product-info>
+      <b class="cart-item__info-price">{{ product.price }} Р</b>
     </div>
 
     <div class="cart-item__buttons">
-      <app-button>Удалить</app-button>
+      <app-button @click.native="$emit('removeProduct', product.id, true)">
+        Удалить</app-button
+      >
 
       <div class="cart-item__count">
-        <app-button>+</app-button>
-        <p class="cart-item__quantity">21</p>
-        <app-button>-</app-button>
+        <app-button @click.native="addProduct">+</app-button>
+        <p class="cart-item__quantity">{{ product.count }}</p>
+        <app-button @click.native="removeProduct" :disabled="product.count == 1"
+          >-</app-button
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProductInfo from "./Product/ProductInfo.vue";
 export default {
-  components: { ProductInfo },
+  props: ["product"],
+  methods: {
+    addProduct() {
+      this.$emit("addProduct", this.product.id);
+    },
+    removeProduct() {
+      this.$emit("removeProduct", this.product.id);
+    },
+  },
 };
 </script>
 

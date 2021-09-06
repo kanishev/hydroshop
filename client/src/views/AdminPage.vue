@@ -131,7 +131,7 @@
         <div>
           <select
             name="removeProduct"
-            @change="selectProduct"
+            @change="selectToRemove"
             v-model="removeSelect"
           >
             <option disabled selected>Выберите товар</option>
@@ -165,7 +165,9 @@ export default {
     return {
       type: null,
       select: "Выберите товар",
+
       removeSelect: "Выберите товар",
+      removeProductId: null,
 
       productName: "",
       productPrice: "",
@@ -223,27 +225,19 @@ export default {
           img: this.productImage,
           price: this.productPrice,
         });
-      } else if (this.type == "edit") {
-        const index = products.findIndex((p) => p._id == this.productId);
-        products[index] = {
-          _id: this.productId,
-          title: this.productName,
-          brand: this.productBrand,
-          rate: this.productRate,
-          sale: this.productSale,
-          available: this.productAvailable,
-          img: this.productImage,
-          price: this.productPrice,
-        };
+        this.$store.commit("setProducts", products);
+      } else {
+        this.$store.commit("setProducts", data.products);
+        this.select = this.productName;
       }
-      this.$store.commit("setProducts", products);
     },
     async removeProduct() {
-      const res = await axios.post("/admin/remove", {
-        id: this.productId,
+      const { data } = await axios.post("/admin/remove", {
+        id: this.removeProductId,
       });
 
-      console.log(res);
+      console.log(data);
+      this.$store.commit("setProducts", data.products);
     },
     selectProduct() {
       const products = this.$store.getters.getProducts;
@@ -260,6 +254,11 @@ export default {
     },
     setImage() {
       this.productImage = this.$refs.file.files[0].name;
+    },
+    selectToRemove() {
+      const products = this.$store.getters.getProducts;
+      const product = products.find((el) => el.title == this.removeSelect);
+      this.removeProductId = product._id;
     },
   },
 };
