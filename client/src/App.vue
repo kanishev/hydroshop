@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <app-alert
       v-if="message.value"
       :message="message.value"

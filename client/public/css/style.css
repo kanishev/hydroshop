@@ -425,7 +425,7 @@ table td {
   display: none;
 }
 
-.tabs-content.tabs-content--active {
+.tabs-content.tabs-content--active, .additional__content.additional__content--active{
   display: block;
 }
 
@@ -531,6 +531,7 @@ table td {
   display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
   border: 1px solid #cdcdcd;
   border-radius: 3px;
   min-height: 410px;
@@ -555,11 +556,11 @@ table td {
   margin-bottom: 12px;
 }
 
-.products__tab.tab--active {
+.products__tab.tab--active, .additional__tab.tab--active {
   border-bottom: 2px solid #1c62cd;
 }
 
-.products__tab + .products__tab {
+.products__tab + .products__tab, .additional__tab + .additional__tab {
   margin-left: 50px;
 }
 
@@ -798,6 +799,10 @@ table td {
   max-width: 200px;
   transition: height 0.35s ease-in-out;
   overflow: hidden;
+}
+
+.footer-list__item{
+  text-align: center;
 }
 
 .social-list {

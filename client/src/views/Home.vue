@@ -109,19 +109,23 @@
         <div class="products__inner">
           <h3 class="product__title">С этим также покупают</h3>
           <div class="tabs-wrapper">
-            <div class="tabs products__tabs mobile-overflow">
-              <app-tab class="products__tab tab--active" href="#popular-1">
+            <div class="tabs additional__tabs mobile-overflow">
+              <app-tab class="additional__tab tab--active" href="#additional-1">
                 запчасти</app-tab
               >
-              <app-tab class="products__tab" href="#popular-2"> моторы</app-tab>
-              <app-tab class="products__tab" href="#popular-3"> шины</app-tab>
-              <app-tab class="products__tab" href="#popular-4">
+              <app-tab class="additional__tab" href="#additional-2">
+                моторы</app-tab
+              >
+              <app-tab class="additional__tab" href="#additional-3">
+                шины</app-tab
+              >
+              <app-tab class="additional__tab" href="#additional-4">
                 электроника</app-tab
               >
-              <app-tab class="products__tab" href="#popular-5">
+              <app-tab class="additional__tab" href="#additional-5">
                 инструменты</app-tab
               >
-              <app-tab class="products__tab" href="#popular-6">
+              <app-tab class="additional__tab" href="#additional-6">
                 аксессуары</app-tab
               >
             </div>
@@ -130,11 +134,11 @@
             <div
               v-for="(product, idx) in additional"
               :key="idx"
-              :id="'popular-' + (idx + 1)"
+              :id="'additional-' + (idx + 1)"
               :class="
                 idx === 0
-                  ? 'tabs-content products__content tabs-content--active'
-                  : 'tabs-content products__content'
+                  ? 'tabs-content additional__content tabs-content--active'
+                  : 'tabs-content additional__content'
               "
             >
               <product-slider :products="additional"></product-slider>

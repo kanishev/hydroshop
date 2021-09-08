@@ -38,9 +38,12 @@
 <script>
 import Pagination from "../components/Pagination.vue";
 import Catalog from "../components/Catalog.vue";
+import catalog from "../utils/catalog.js";
 
 export default {
   mounted() {
+    catalog();
+
     const products = this.$store.getters.getProducts;
 
     if (!products) {
@@ -48,6 +51,9 @@ export default {
     } else {
       this.$store.getters.getProducts;
     }
+  },
+  updated() {
+    catalog();
   },
   computed: {
     products() {

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from '../store/index'
+import mountScript from "../utils/tabs";
 
 import Home from "../views/Home.vue";
 import Catalog from "../views/Catalog.vue";
@@ -66,7 +67,7 @@ const routes = [
   },
   {
     path: "/favourite",
-    name: "admin",
+    name: "favourite",
     component: favouritePage,
     meta: {
       layout: "main"
@@ -81,6 +82,10 @@ const router = new VueRouter({
   routes,
 });
 
+
+router.afterEach(() => {
+  setTimeout(mountScript, 0)
+})
 
 router.beforeEach((to, from, next) => {
 
