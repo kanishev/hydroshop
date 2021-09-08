@@ -49,7 +49,7 @@ export default {
         }
         return p;
       });
-      this.totalPrice = computePrice(this.cart);
+      this.totalPrice = computePrice(this.cart) || 0;
       await axios.post("/cart/add", { id });
     },
     async removeProduct(id, exact) {

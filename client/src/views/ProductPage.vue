@@ -104,14 +104,14 @@ import ProductCard from "../components/Product/ProductCard.vue";
 import ProductSlider from "../components/Product/ProductSlider.vue";
 import ProductTable from "../components/Product/ProductTable.vue";
 import ProductInfo from "../components/Product/ProductInfo.vue";
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  mounted(){
-    this.getProduct().then(({data}) => {
-      console.log(data)
-      this.product = data
-    })
+  mounted() {
+    this.getProduct().then(({ data }) => {
+      console.log(data);
+      this.product = data;
+    });
   },
   data() {
     return {
@@ -119,42 +119,42 @@ export default {
       additional: [
         {
           title: "BRP Audio-портативная система",
-          src: "../images/content/popular-1.png",
+          img: "popular-1.png",
           price: 120000,
           available: true,
           sale: false,
         },
         {
           title: "Garmin Echomap Plus 62cv",
-          src: "../images/content/popular-2.png",
+          img: "popular-2.png",
           price: 10500,
           available: true,
           sale: false,
         },
         {
           title: "D.E.S.S.TM Key ",
-          src: "../images/content/popular-3.png",
+          img: "popular-3.png",
           price: 55200,
           available: false,
           sale: true,
         },
         {
           title: "Мужской костюм 3мм RF",
-          src: "../images/content/popular-4.png",
+          img: "popular-4.png",
           price: 15000,
           available: false,
           sale: true,
         },
         {
           title: "Водонипроницаемый рюкзак",
-          src: "../../images/content/product-1.png",
+          img: "product-1.png",
           price: 45000,
           available: false,
           sale: true,
         },
         {
           title: "Водонипроницаемый рюкзак 1",
-          src: ".../../images/content/product-1.png",
+          img: "product-1.png",
           price: 98000,
           available: true,
           sale: true,
@@ -163,11 +163,9 @@ export default {
     };
   },
   methods: {
-    async getProduct(){
-      console.log('TYTA', this.$route.params.id)
-      return await axios.get(`/products/${this.$route.params.id}`)
-
-    }
+    async getProduct() {
+      return await axios.get(`/products/${this.$route.params.id}`);
+    },
   },
   components: { ProductSlider, ProductTable, ProductCard, ProductInfo },
 };

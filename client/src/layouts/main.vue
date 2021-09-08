@@ -13,18 +13,24 @@
               <a class="header__adress" href="">Москва, ул. Науки 25</a>
               <ul class="user-list">
                 <li class="user-list__item">
-                  <a class="user-list__link" href="#">
+                  <router-link class="user-list__link" to="/favourite">
                     <img src="../assets/icons/heart.svg" alt="" />
-                  </a>
+                  </router-link>
                 </li>
-                <li class="user-list__item" v-if="user.role == 'NOT_AUTH'">
+                <li
+                  class="user-list__item"
+                  v-if="user && user.role == 'NOT_AUTH'"
+                >
                   <router-link class="user-list__link" to="/auth">
                     <img src="../assets/icons/user.svg" alt="" />
                   </router-link>
                 </li>
                 <li
                   class="user-list__item"
-                  v-if="user.role == 'USER' || user.role == 'ADMIN'"
+                  v-if="
+                    (user && user.role == 'USER') ||
+                    (user && user.role == 'ADMIN')
+                  "
                 >
                   <a
                     class="user-list__link"
@@ -286,12 +292,16 @@ export default {
   },
   computed: {
     user() {
-      console.log("USER");
       return this.$store.getters.getUser;
     },
     totalCartProducts() {
       const { cart } = this.$store.getters.getUser;
-      return cart.items.reduce((acc, p) => acc + p.count, 0);
+
+      if (!cart || cart.items.length == 0) {
+        return 0;
+      } else {
+        return cart.items.reduce((acc, p) => acc + p.count, 0);
+      }
     },
   },
   methods: {

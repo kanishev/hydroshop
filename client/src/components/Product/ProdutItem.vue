@@ -10,7 +10,11 @@
       @click.prevent="openProduct(product._id)"
     >
       <a class="product-item__hover-text">посмотреть товар</a>
-      <img :src="product.img" alt="" class="product-item__img" />
+      <img
+        :src="`../../images/content/${product.img}`"
+        alt=""
+        class="product-item__img"
+      />
       <h4 class="product-item__title">{{ product.title }}</h4>
 
       <slot></slot>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Страница администратора</h1>
+    <h1 class="page__title">Страница администратора</h1>
 
     <form @submit.prevent="submitForm" enctype="multipart/form-data">
       <fieldset>

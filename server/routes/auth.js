@@ -17,8 +17,16 @@ const transporter = nodemailer.createTransport(
 );
 
 router.get("/", async (req, res) => {
-  const user = await User.findOne({ email: req.session.user.email });
-  return res.json(user);
+  try {
+    if (!req.session.user){
+      return res.json(null)
+    }
+    const user = await User.findOne({ email: req.session.user.email });
+    return res.json(user);
+  } catch(e) {
+    console.log(e)
+  }
+
 });
 
 router.post("/login", async (req, res) => {

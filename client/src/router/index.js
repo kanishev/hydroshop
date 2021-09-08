@@ -1,12 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from '../store/index'
+
 import Home from "../views/Home.vue";
 import Catalog from "../views/Catalog.vue";
 import ProductPage from "../views/ProductPage.vue";
 import CartPage from "../views/CartPage.vue";
 import AuthPage from "../views/AuthPage.vue";
 import AdminPage from '../views/AdminPage.vue'
+import favouritePage from '../views/FavoritePage.vue'
 
 
 Vue.use(VueRouter);
@@ -60,6 +62,14 @@ const routes = [
     meta: {
       layout: "main",
       admin: true,
+    },
+  },
+  {
+    path: "/favourite",
+    name: "admin",
+    component: favouritePage,
+    meta: {
+      layout: "main"
     },
   },
 ];

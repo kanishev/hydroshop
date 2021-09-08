@@ -1501,3 +1501,7 @@ button.catalog__filter-btn_line {
 .card-list__btn button:disabled {
   background: rgba(0, 0, 0, 0.3);
 }
+
+.page__title {
+  margin: 35px 0;
+}
