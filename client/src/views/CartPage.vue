@@ -43,6 +43,8 @@ export default {
       this.isLoading = false;
     },
     async addProduct(id) {
+      let user = this.$store.getters.getUser;
+
       this.cart = this.cart.map((p) => {
         if (p.id == id) {
           p.count++;
@@ -51,13 +53,21 @@ export default {
       });
       this.totalPrice = computePrice(this.cart) || 0;
       await axios.post("/cart/add", { id });
+
+      user.cart.items = this.cart;
+      this.$store.commit("setUser", Object.assign({}, user));
     },
     async removeProduct(id, exact) {
+      let user = this.$store.getters.getUser;
+
       if (exact) {
         this.cart = this.cart.filter((p) => p.id !== id);
 
         this.totalPrice = computePrice(this.cart);
         await axios.post("/cart/remove", { id, exact });
+
+        user.cart.items = this.cart;
+        this.$store.commit("setUser", Object.assign({}, user));
       } else {
         this.cart = this.cart.map((p) => {
           if (p.id == id) {
@@ -68,6 +78,9 @@ export default {
 
         this.totalPrice = computePrice(this.cart);
         await axios.post("/cart/remove", { id });
+
+        user.cart.items = this.cart;
+        this.$store.commit("setUser", Object.assign({}, user));
       }
     },
   },

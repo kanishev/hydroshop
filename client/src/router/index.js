@@ -70,7 +70,8 @@ const routes = [
     name: "favourite",
     component: favouritePage,
     meta: {
-      layout: "main"
+      layout: "main",
+      auth: true
     },
   },
 ];

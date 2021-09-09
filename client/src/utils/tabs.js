@@ -4,7 +4,6 @@ function mountScript() {
 
   let menuBtn = document.querySelector('.menu__btn');
   let asideBtn = document.querySelector('.aside__btn')
-  let favourite = document.querySelectorAll(".product-item__favourite")
 
   let tabs = document.querySelectorAll(".tab");
   let tabsContents = document.querySelectorAll(".tabs-content");
@@ -40,16 +39,6 @@ function mountScript() {
 
   for (let i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", myTabClicks);
-  }
-
-
-
-  if(favourite){
-    favourite.forEach(f => {
-      f.addEventListener("click", function () {
-        this.classList.toggle("product-item__favourite--active");
-      });
-    })
   }
 
 

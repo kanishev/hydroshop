@@ -19,6 +19,7 @@ const adminRoutes = require("./routes/admin");
 const productsRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
 const authRoutes = require("./routes/auth");
+const favourRoutes = require("./routes/favourite");
 
 const keys = require("./keys/index");
 
@@ -59,6 +60,7 @@ app.use("/cart", authMdw, cartRoutes);
 app.use("/admin", adminMdw, adminRoutes);
 app.use("/products", productsRoutes);
 app.use("/order", authMdw, orderRoutes);
+app.use("/favourite", favourRoutes);
 app.use("/auth", authRoutes);
 app.use(errorMdw);
 

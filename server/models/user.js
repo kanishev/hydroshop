@@ -19,6 +19,18 @@ const user = new Schema({
     type: String,
     default: 'USER'
   },
+  favour: {
+    items: [
+        {
+          productId: {
+             type: Schema.Types.ObjectId,
+             ref: 'Product',
+             required: true
+         }
+        }
+
+    ]
+},
   cart: {
     items: [
       {
@@ -86,5 +98,29 @@ user.methods.clearCart = function (id) {
   this.cart = { items: [] };
   return this.save();
 };
+
+user.methods.addFavour = function(product){
+  let items = [...this.favour.items]
+  const idx = items.findIndex( p => p.productId.toString() == product.id.toString())
+  if (idx == -1){
+     items.push({
+          productId: product.id
+      })
+  }
+
+  this.favour = {items}
+  return this.save()
+}
+
+user.methods.removeFavour = function(product){
+  let items = [...this.favour.items]
+  const idx = items.findIndex( c => c.productId.toString() == product.id.toString())
+  if (idx >= 0){
+    items = items.filter(c => c.productId.toString() !== product._id.toString())
+  }
+  this.favour = {items}
+  return this.save()
+}
+
 
 module.exports = model("User", user);

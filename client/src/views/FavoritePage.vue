@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1 class="page__title">Страница избранных товаров</h1>
+    <app-loader v-if="isLoading"></app-loader>
 
     <div
       v-for="(product, idx) in products"
@@ -18,57 +19,29 @@
 </template>
 
 <script>
+import axios from "axios";
 import ProductSlider from "../components/Product/ProductSlider.vue";
+import AppLoader from "../components/UI/AppLoader.vue";
 
 export default {
+  mounted() {
+    this.isLoading = true;
+    this.fetchFavourite();
+  },
+  methods: {
+    async fetchFavourite() {
+      const { data } = await axios.get("/favourite");
+      this.products = data.products;
+
+      this.isLoading = false;
+    },
+  },
   data() {
     return {
-      products: [
-        {
-          title: "Водонипроницаемый рюкзак 1",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 2",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 3",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 4",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 5",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 6",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: true,
-        },
-      ],
+      isLoading: false,
+      products: [],
     };
   },
-  components: { ProductSlider },
+  components: { ProductSlider, AppLoader },
 };
 </script>

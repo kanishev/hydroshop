@@ -30,6 +30,10 @@ const product = new Schema({
     type: Boolean, //Boolean
     default: false,
   },
+  isFavour: {
+    type: Boolean,
+    default: false
+  },
   info: {
     type: Object,
     default: Object,

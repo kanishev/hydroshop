@@ -1,5 +1,7 @@
 function catalog(){
 
+  console.log('catalog')
+
   let btnGrid = document.querySelector('.catalog__filter-btn_grid')
   let btnLine = document.querySelector('.catalog__filter-btn_line')
 
@@ -8,13 +10,11 @@ function catalog(){
 
 
 
-  if(favourite){
-    favourite.forEach(f => {
-      f.addEventListener("click", function () {
-        this.classList.toggle("product-item__favourite--active");
-      });
-    })
-  }
+  favourite.forEach(f => {
+    f.addEventListener("click", function () {
+      this.classList.toggle("product-item__favourite--active");
+    });
+  })
 
 
   if (btnGrid && btnLine){

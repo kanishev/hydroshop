@@ -1,6 +1,10 @@
 <template>
   <div class="product-item__wrapper">
-    <button class="product-item__favourite"></button>
+    <button
+      class="product-item__favourite"
+      @click="toggleFavourite(product._id)"
+      ref="favourite"
+    ></button>
     <button class="product-item__cart" @click="addToCart(product._id)">
       <img src="../assets/icons/cart-white.svg" alt="cart" />
     </button>
@@ -41,6 +45,25 @@ export default {
 
       this.$store.commit("setUser", Object.assign({}, user));
       this.$store.commit("setMessage", data.message);
+    },
+    async toggleFavourite(id) {
+      const products = this.$store.getters.getProducts;
+
+      const toggled = this.$refs.favourite.classList.contains(
+        "product-item__favourite--active"
+      );
+
+      if (toggled) {
+        let { data } = await axios.post("/favourite/remove", { id });
+        this.product.isFavour = true;
+        console.log(products);
+        console.log(data);
+      } else {
+        let { data } = await axios.post("/favourite/add", { id });
+        this.product.isFavour = true;
+
+        console.log(data);
+      }
     },
   },
 };
