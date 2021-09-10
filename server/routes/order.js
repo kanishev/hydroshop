@@ -42,8 +42,6 @@ router.post("/", async (req, res) => {
       products,
     });
 
-    console.log(order);
-
     await order.save();
     await req.user.clearCart();
   } catch (e) {

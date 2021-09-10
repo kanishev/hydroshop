@@ -16,11 +16,7 @@ const product = new Schema({
   },
   brand: {
     type: String,
-    required: true,
-  },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    required: false,
   },
   sale: {
     type: Boolean, //Boolean
@@ -33,6 +29,10 @@ const product = new Schema({
   isFavour: {
     type: Boolean,
     default: false
+  },
+  category:{
+    type: String,
+    default: 'product'
   },
   info: {
     type: Object,

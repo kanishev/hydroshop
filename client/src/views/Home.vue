@@ -79,7 +79,7 @@
           </div>
           <div class="tabs-container products__container">
             <div
-              v-for="(product, idx) in products"
+              v-for="(product, idx) in popular"
               :key="idx"
               :id="'product' + '-' + (idx + 1)"
               :class="
@@ -88,7 +88,7 @@
                   : 'tabs-content products__content'
               "
             >
-              <product-slider :products="products"></product-slider>
+              <product-slider :products="popular"></product-slider>
             </div>
           </div>
           <div class="product__more">
@@ -160,97 +160,18 @@ import AppButton from "../components/UI/AppButton.vue";
 import Banner from "../components/Banner/Banner.vue";
 
 export default {
-  data() {
-    return {
-      products: [
-        {
-          title: "Водонипроницаемый рюкзак 1",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 2",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 3",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 4",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 5",
-          img: "product-1.png",
-          price: 9800,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 6",
-          img: "product-1.png",
-          price: 9800,
-          available: true,
-          sale: true,
-        },
-      ],
-      additional: [
-        {
-          title: "BRP Audio-портативная система",
-          img: "popular-1.png",
-          price: 120000,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "Garmin Echomap Plus 62cv",
-          img: "popular-2.png",
-          price: 10500,
-          available: true,
-          sale: false,
-        },
-        {
-          title: "D.E.S.S.TM Key ",
-          img: "popular-3.png",
-          price: 55200,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Мужской костюм 3мм RF",
-          img: "popular-4.png",
-          price: 15000,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак",
-          img: "product-1.png",
-          price: 45000,
-          available: false,
-          sale: true,
-        },
-        {
-          title: "Водонипроницаемый рюкзак 1",
-          img: "product-1.png",
-          price: 98000,
-          available: true,
-          sale: true,
-        },
-      ],
-    };
+  computed: {
+    additional() {
+      const products = this.$store.getters.getProducts;
+      if (!products) return [];
+      return products.filter((p) => p.category === "additional");
+    },
+    popular() {
+      const products = this.$store.getters.getProducts;
+      if (!products) return [];
+
+      return products.filter((p) => p.category === "popular");
+    },
   },
   components: {
     BannerSlider,

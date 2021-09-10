@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const { title, price, img, rate, brand, info, sale, available } = req.body;
+  const { title, price, img, rate, brand, info, sale, available, category} = req.body;
   const product = new Product({
     title,
     price,
@@ -18,7 +18,7 @@ router.post("/create", async (req, res) => {
     info,
     sale,
     available,
-    userId: req.user,
+    category,
   });
 
   const products = await Product.find()

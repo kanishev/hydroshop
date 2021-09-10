@@ -40,7 +40,7 @@
                     <img src="../assets/icons/logout.svg" alt="" />
                   </a>
                 </li>
-                <li class="user-list__item" v-if="user === 'ADMIN'">
+                <li class="user-list__item" v-if="user.role === 'ADMIN'">
                   <router-link class="user-list__link" to="/admin">
                     <img src="../assets/icons/admin.svg" alt="" />
                   </router-link>
@@ -289,6 +289,7 @@ import MenuCategories from "../components/MenuCategories.vue";
 export default {
   async mounted() {
     this.$store.dispatch("getUser");
+    this.$store.dispatch("getProducts");
   },
   computed: {
     user() {

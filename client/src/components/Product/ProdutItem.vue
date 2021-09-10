@@ -1,7 +1,11 @@
 <template>
   <div class="product-item__wrapper">
     <button
-      class="product-item__favourite"
+      :class="
+        isFavourite
+          ? 'product-item__favourite product-item__favourite--active'
+          : 'product-item__favourite'
+      "
       @click="toggleFavourite(product._id)"
       ref="favourite"
     ></button>
@@ -15,7 +19,7 @@
     >
       <a class="product-item__hover-text">посмотреть товар</a>
       <img
-        :src="require('../../images/catalog/' + product.img)"
+        :src="require('../../images/content/' + product.img)"
         alt=""
         class="product-item__img"
       />
@@ -27,14 +31,38 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   props: ["product"],
+  computed: {
+    isFavourite() {
+      const favouriteList = this.$store.getters.getUser.favour.items;
+
+      let favour = false;
+
+      favouriteList.forEach((el) => {
+        if (el.productId == this.product._id) {
+          favour = true;
+        }
+      });
+
+      return favour;
+    },
+  },
   methods: {
     openProduct(id) {
       this.$router.push(`products/${id}`);
     },
-    toggleFavourite(id) {
-      console.log("toggle", id);
+    async toggleFavourite(id) {
+      const toggled = this.$refs.favourite.classList.contains(
+        "product-item__favourite--active"
+      );
+
+      if (toggled) {
+        await axios.post("/favourite/remove", { id });
+      } else {
+        await axios.post("/favourite/add", { id });
+      }
     },
   },
 };

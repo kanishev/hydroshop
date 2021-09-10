@@ -16,7 +16,7 @@
         :key="product.title"
       >
         <product-item :product="product">
-          <p v-if="product.available" class="product-item__notify">
+          <p v-if="!product.available" class="product-item__notify">
             нет в наличии
           </p>
           <p v-else class="price product-item__price">{{ product.price }} Р</p>

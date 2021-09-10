@@ -38,30 +38,19 @@
 <script>
 import Pagination from "../components/Pagination.vue";
 import Catalog from "../components/Catalog.vue";
-import catalog from "../utils/catalog.js";
+import catalog from "../utils/catalog";
 
 export default {
   mounted() {
     catalog();
-
-    const products = this.$store.getters.getProducts;
-
-    if (!products) {
-      this.$store.dispatch("getProducts");
-    } else {
-      this.$store.getters.getProducts;
-    }
-  },
-  updated() {
-    catalog();
   },
   computed: {
     products() {
-      return this.$store.getters.getProducts;
+      const products = this.$store.getters.getProducts;
+      if (!products) return [];
+      catalog();
+      return products.filter((p) => p.category === "product");
     },
-  },
-  data() {
-    return {};
   },
   components: { Pagination, Catalog },
 };

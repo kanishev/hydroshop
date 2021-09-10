@@ -42,12 +42,22 @@
 
         <div>
           <label for="brand">Бренд продукта:</label>
-
           <select id="brand" name="brand" v-model="productBrand">
             <optgroup label="brand">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div>
+          <label for="brand">Категория продукта:</label>
+          <select id="brand" name="brand" v-model="productCategory">
+            <optgroup label="brand">
+              <option value="product">Продукт</option>
+              <option value="popular">Популярное</option>
+              <option value="additional">Дополнительный</option>
             </optgroup>
           </select>
         </div>
@@ -177,6 +187,7 @@ export default {
       productAvailable: "",
       productImage: "",
       productId: "",
+      productCategory: "",
 
       removeName: "",
     };
@@ -202,6 +213,7 @@ export default {
         available: this.productAvailable === "available" ? true : false,
         img: this.productImage,
         id: this.productId,
+        category: this.productCategory,
       });
 
       await axios.post("admin/image", fd, {
@@ -253,7 +265,7 @@ export default {
       this.productId = product._id;
     },
     setImage() {
-      this.productImage = this.$refs.file.files[0].name;
+      this.productImage = this.$refs.file.files[0].name || null;
     },
     selectToRemove() {
       const products = this.$store.getters.getProducts;

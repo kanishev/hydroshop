@@ -28,7 +28,7 @@ function mountScript() {
 
     for (let i = 0; i < tabsContents.length; i++) {
       if (
-        activeTabId.includes(tabsContents[i].getAttribute("id").split("")[0])
+        activeTabId.includes(tabsContents[i].getAttribute("id").split("-")[0])
       ) {
         tabsContents[i].classList.remove("tabs-content--active");
       }
@@ -61,8 +61,6 @@ function mountScript() {
 
   function toggleLinks(e) {
     e.preventDefault();
-
-    console.log('awsd')
 
     for (let i = 0; i < linkToggle.length; i++) {
       linkToggle[i].classList.remove("tab--active");

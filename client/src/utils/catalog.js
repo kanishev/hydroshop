@@ -9,12 +9,15 @@ function catalog(){
   let favourite = document.querySelectorAll(".product-item__favourite")
 
 
+  if (favourite.length > 0){
+    console.log(true)
+    favourite.forEach(f => {
+      f.addEventListener("click", function () {
+        this.classList.toggle("product-item__favourite--active");
+      });
+    })
+  }
 
-  favourite.forEach(f => {
-    f.addEventListener("click", function () {
-      this.classList.toggle("product-item__favourite--active");
-    });
-  })
 
 
   if (btnGrid && btnLine){

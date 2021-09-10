@@ -1,7 +1,11 @@
 <template>
   <div class="product-item__wrapper">
     <button
-      class="product-item__favourite"
+      :class="
+        isFavourite
+          ? 'product-item__favourite product-item__favourite--active'
+          : 'product-item__favourite'
+      "
       @click="toggleFavourite(product._id)"
       ref="favourite"
     ></button>
@@ -32,6 +36,21 @@ import axios from "axios";
 export default {
   props: ["product"],
   name: "catalog-item",
+  computed: {
+    isFavourite() {
+      const favouriteList = this.$store.getters.getUser.favour.items;
+
+      let favour = false;
+
+      favouriteList.forEach((el) => {
+        if (el.productId == this.product._id) {
+          favour = true;
+        }
+      });
+
+      return favour;
+    },
+  },
   methods: {
     openProduct(id) {
       this.$router.push(`products/${id}`);
@@ -47,22 +66,14 @@ export default {
       this.$store.commit("setMessage", data.message);
     },
     async toggleFavourite(id) {
-      const products = this.$store.getters.getProducts;
-
       const toggled = this.$refs.favourite.classList.contains(
         "product-item__favourite--active"
       );
 
       if (toggled) {
-        let { data } = await axios.post("/favourite/remove", { id });
-        this.product.isFavour = true;
-        console.log(products);
-        console.log(data);
+        await axios.post("/favourite/remove", { id });
       } else {
-        let { data } = await axios.post("/favourite/add", { id });
-        this.product.isFavour = true;
-
-        console.log(data);
+        await axios.post("/favourite/add", { id });
       }
     },
   },
