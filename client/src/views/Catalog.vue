@@ -12,6 +12,7 @@
             <button>еще</button>
           </div>
         </div>
+
         <div class="catalog__filter-btn">
           <button
             class="
@@ -38,17 +39,17 @@
 <script>
 import Pagination from "../components/Pagination.vue";
 import Catalog from "../components/Catalog.vue";
-import catalog from "../utils/catalog";
+// import catalog from "../utils/catalog";
 
 export default {
   mounted() {
-    catalog();
+    // catalog();
+    this.$store.dispatch("getProducts");
   },
   computed: {
     products() {
       const products = this.$store.getters.getProducts;
       if (!products) return [];
-      catalog();
       return products.filter((p) => p.category === "product");
     },
   },

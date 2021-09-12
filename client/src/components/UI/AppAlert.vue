@@ -16,7 +16,7 @@ export default {
 
 <style>
 .alert {
-  position: absolute;
+  position: fixed;
   right: 20px;
   margin: 10px 0px;
   padding: 12px;

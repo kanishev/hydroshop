@@ -40,7 +40,10 @@
                     <img src="../assets/icons/logout.svg" alt="" />
                   </a>
                 </li>
-                <li class="user-list__item" v-if="user.role === 'ADMIN'">
+                <li
+                  class="user-list__item"
+                  v-if="user && user.role === 'ADMIN'"
+                >
                   <router-link class="user-list__link" to="/admin">
                     <img src="../assets/icons/admin.svg" alt="" />
                   </router-link>
@@ -296,12 +299,12 @@ export default {
       return this.$store.getters.getUser;
     },
     totalCartProducts() {
-      const { cart } = this.$store.getters.getUser;
+      const user = this.$store.getters.getUser;
 
-      if (!cart || cart.items.length == 0) {
+      if (!user || !user.cart || user.cart.items.length == 0) {
         return 0;
       } else {
-        return cart.items.reduce((acc, p) => acc + p.count, 0);
+        return user.cart.items.reduce((acc, p) => acc + p.count, 0);
       }
     },
   },

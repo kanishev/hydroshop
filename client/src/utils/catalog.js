@@ -6,19 +6,6 @@ function catalog(){
   let btnLine = document.querySelector('.catalog__filter-btn_line')
 
   let productWrappers = document.querySelectorAll(".product-item__wrapper");
-  let favourite = document.querySelectorAll(".product-item__favourite")
-
-
-  if (favourite.length > 0){
-    console.log(true)
-    favourite.forEach(f => {
-      f.addEventListener("click", function () {
-        this.classList.toggle("product-item__favourite--active");
-      });
-    })
-  }
-
-
 
   if (btnGrid && btnLine){
 

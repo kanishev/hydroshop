@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const router = Router();
 
 function mapCartProducts(cart) {
+  console.log(cart)
   return cart.items.map((p) => ({
     ...p.productId._doc,
     id: p.productId.id,

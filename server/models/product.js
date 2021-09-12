@@ -22,6 +22,10 @@ const product = new Schema({
     type: Boolean, //Boolean
     default: false,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   available: {
     type: Boolean, //Boolean
     default: false,

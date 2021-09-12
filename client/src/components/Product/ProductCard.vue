@@ -6,7 +6,7 @@
     >
       <img
         class="product-card__img"
-        :src="`../../images/catalog/${product.img}`"
+        :src="require('../../images/catalog/' + product.img)"
         alt=""
       />
       <p class="product-card__price-old">1 200 475 Р</p>

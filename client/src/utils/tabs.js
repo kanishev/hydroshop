@@ -2,12 +2,14 @@
 
 function mountScript() {
 
+
   let menuBtn = document.querySelector('.menu__btn');
   let asideBtn = document.querySelector('.aside__btn')
 
   let tabs = document.querySelectorAll(".tab");
   let tabsContents = document.querySelectorAll(".tabs-content");
 
+  console.log(tabsContents)
 
   function myTabClicks(e) {
     e.preventDefault();
@@ -27,6 +29,7 @@ function mountScript() {
     target.classList.add("tab--active");
 
     for (let i = 0; i < tabsContents.length; i++) {
+      console.log(tabsContents[i])
       if (
         activeTabId.includes(tabsContents[i].getAttribute("id").split("-")[0])
       ) {

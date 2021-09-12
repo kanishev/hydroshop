@@ -1,7 +1,5 @@
 <template>
   <div class="catalog__inner">
-    <button class="aside__btn">фильтр</button>
-
     <aside-filter></aside-filter>
 
     <div class="catalog__inner-list">

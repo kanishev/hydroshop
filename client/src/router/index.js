@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from '../store/index'
-import mountScript from "../utils/tabs";
+// import mountScript from "../utils/tabs";
 
 import Home from "../views/Home.vue";
 import Catalog from "../views/Catalog.vue";
@@ -84,9 +84,9 @@ const router = new VueRouter({
 });
 
 
-router.afterEach(() => {
-  setTimeout(mountScript, 0)
-})
+// router.afterEach(() => {
+//   setTimeout(mountScript, 0)
+// })
 
 router.beforeEach((to, from, next) => {
 

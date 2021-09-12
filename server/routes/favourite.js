@@ -13,6 +13,14 @@ function toGood(favour){
 router.post('/add', async (req, res) => {
 
     try{
+
+        if(!req.user){
+            return res.json({message: {
+                value: 'Необходимо залогиниться',
+                type: 'error'
+              }});
+        }
+
        const product = await Product.findById(req.body.id)
        req.user.addFavour(product)
 
@@ -52,7 +60,11 @@ router.get('/', async (req, res) => {
 
     try{
        const user = await req.user.populate('favour.items.productId').execPopulate()
+
+       console.log(user.favour)
        const products = toGood(user.favour)
+
+
 
        return res.json({products, message: {
         value: 'Товар удален из избранного',

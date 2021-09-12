@@ -38,11 +38,14 @@ export default {
   name: "catalog-item",
   computed: {
     isFavourite() {
-      const favouriteList = this.$store.getters.getUser.favour.items;
-
+      const favouriteList = this.$store.getters.getUser;
       let favour = false;
 
-      favouriteList.forEach((el) => {
+      if (!favouriteList.favour) {
+        return favour;
+      }
+
+      favouriteList.favour.items.forEach((el) => {
         if (el.productId == this.product._id) {
           favour = true;
         }
@@ -66,14 +69,20 @@ export default {
       this.$store.commit("setMessage", data.message);
     },
     async toggleFavourite(id) {
+      let user = this.$store.getters.getUser;
+
       const toggled = this.$refs.favourite.classList.contains(
         "product-item__favourite--active"
       );
 
       if (toggled) {
         await axios.post("/favourite/remove", { id });
+        user.favour.items = user.favour.items.filter((p) => p.productId !== id);
+        this.$store.commit("setUser", Object.assign({}, user));
       } else {
         await axios.post("/favourite/add", { id });
+        user.favour.items.push({ productId: id });
+        this.$store.commit("setUser", Object.assign({}, user));
       }
     },
   },
