@@ -162,18 +162,19 @@ import Banner from "../components/Banner/Banner.vue";
 import mountScript from "../utils/tabs";
 
 export default {
+  updated() {
+    console.log("h");
+    mountScript();
+  },
   computed: {
     additional() {
       const products = this.$store.getters.getProducts;
       if (!products) return [];
-      mountScript();
-
       return products.filter((p) => p.category === "additional");
     },
     popular() {
       const products = this.$store.getters.getProducts;
       if (!products) return [];
-      mountScript();
       return products.filter((p) => p.category === "popular");
     },
   },

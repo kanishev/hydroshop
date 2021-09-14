@@ -28,6 +28,16 @@
               <app-button class="auth__btn" type="submit" :disabled="loader"
                 >Login</app-button
               >
+
+              <pre>
+ADMIN :
+  login: admin@mail.ru
+  password: 111
+
+USER:
+  login: client@mail.ru
+  password: 111
+              </pre>
             </form>
 
             <form id="register-form" @submit.prevent="register">
@@ -182,5 +192,11 @@ export default {
 }
 .auth__label {
   cursor: pointer;
+}
+
+pre {
+  font-size: 13px;
+  line-height: 1.3em;
+  font-family: monospace;
 }
 </style>

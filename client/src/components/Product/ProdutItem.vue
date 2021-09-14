@@ -9,7 +9,7 @@
       @click="toggleFavourite(product._id)"
       ref="favourite"
     ></button>
-    <button class="product-item__cart">
+    <button class="product-item__cart" @click="addToCart(product._id)">
       <img src="../../assets/icons/cart-white.svg" alt="cart" />
     </button>
     <a
@@ -36,12 +36,12 @@ export default {
   props: ["product"],
   computed: {
     isFavourite() {
-      const favouriteList = this.$store.getters.getUser;
-      if (!favouriteList.favour) return false;
+      const user = this.$store.getters.getUser;
+      if (!user || !user.favour) return false;
 
       let favour = false;
 
-      favouriteList.favour.items.forEach((el) => {
+      user.favour.items.forEach((el) => {
         if (el.productId == this.product._id) {
           favour = true;
         }
@@ -54,6 +54,16 @@ export default {
     openProduct(id) {
       this.$router.push(`products/${id}`);
     },
+    async addToCart(id) {
+      let user = this.$store.getters.getUser;
+
+      const { data } = await axios.post("/cart/add", { id });
+
+      user.cart = data.cart;
+
+      this.$store.commit("setUser", Object.assign({}, user));
+      this.$store.commit("setMessage", data.message);
+    },
     async toggleFavourite(id) {
       let user = this.$store.getters.getUser;
 
@@ -61,14 +71,20 @@ export default {
         "product-item__favourite--active"
       );
 
-      if (toggled) {
-        await axios.post("/favourite/remove", { id });
-        user.favour.items = user.favour.items.filter((p) => p.productId !== id);
-        this.$store.commit("setUser", Object.assign({}, user));
+      if (user.role == "NOT_AUTH") {
+        this.$router.push("/auth");
       } else {
-        await axios.post("/favourite/add", { id });
-        user.favour.items.push({ productId: id });
-        this.$store.commit("setUser", Object.assign({}, user));
+        if (toggled) {
+          await axios.post("/favourite/remove", { id });
+          user.favour.items = user.favour.items.filter(
+            (p) => p.productId !== id
+          );
+          this.$store.commit("setUser", Object.assign({}, user));
+        } else {
+          await axios.post("/favourite/add", { id });
+          user.favour.items.push({ productId: id });
+          this.$store.commit("setUser", Object.assign({}, user));
+        }
       }
     },
   },

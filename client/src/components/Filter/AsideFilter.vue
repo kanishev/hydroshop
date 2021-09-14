@@ -13,50 +13,82 @@
         id="filter-1"
         class="tabs-content aside-filter__tabs-content tabs-content--active"
       >
-        <form action="" class="aside-filter__form">
+        <form action="" class="aside-filter__form" @submit.prevent="filter">
           <ul class="aside-filter__list">
             <app-filter
+              :model="available"
+              @input="
+                (v) =>
+                  available.includes(v)
+                    ? (available = available.filter((p) => p !== v))
+                    : available.push(v)
+              "
               type="checkbox"
               :fields="['В наличии', 'под заказ']"
               title="Наличие"
             ></app-filter>
 
             <app-filter
+              :model="isSale"
+              @input="(v) => (isSale = v)"
               type="radio"
               :fields="['Все', 'Акции', 'Новинки']"
               title="Акции"
             >
             </app-filter>
 
-            <app-range></app-range>
+            <app-range @input="(arr) => (price = arr)"></app-range>
 
             <li class="aside-filter__item-list">
-              <filter-select title="Мощность"></filter-select>
-              <filter-select title="Мощность двигателя л.с."></filter-select>
-              <filter-select title="Макс. скорость л.с"></filter-select>
+              <filter-select
+                title="Мощность"
+                :model="engine"
+                @change="(v) => (engine = v)"
+              ></filter-select>
+              <filter-select
+                title="Мощность двигателя л.с."
+                :model="engine_hp"
+                @change="(v) => (engine_hp = v)"
+              ></filter-select>
+              <filter-select
+                title="Макс. скорость л.с"
+                :model="speed"
+                @change="(v) => (speed = v)"
+              ></filter-select>
             </li>
 
             <app-filter
-              type="checkbox"
+              :model="brand"
+              @input="
+                (v) =>
+                  brand.includes(v)
+                    ? (brand = brand.filter((p) => p !== v))
+                    : brand.push(v)
+              "
               :fields="['BRP', 'Spark 2', 'Spark 3']"
+              type="checkbox"
               title="Бренд"
             >
-              <template v-slot:more>
-                <div class="filter-more">
-                  <button class="filter-more__btn">показать еще</button>
-                </div>
-              </template>
             </app-filter>
 
             <app-filter
               type="checkbox"
+              @input="
+                (v) =>
+                  model.includes(v)
+                    ? (model = model.filter((p) => p !== v))
+                    : model.push(v)
+              "
               :fields="[' Модель 1', ' Модель 2', ' Модель 3']"
               title="Модели"
+              :model="model"
             >
               <input
                 type="text"
                 class="filter-search"
                 placeholder="Введите модель"
+                :model="title"
+                @input="(v) => (title = v.target.value)"
               />
             </app-filter>
 
@@ -71,6 +103,13 @@
             </li>
 
             <app-filter
+              :model="country"
+              @input="
+                (v) =>
+                  country.includes(v)
+                    ? (country = country.filter((p) => p !== v))
+                    : country.push(v)
+              "
               type="checkbox"
               :fields="[' Россия', ' Германия', ' Китай', 'США']"
               title="Страны"
@@ -98,6 +137,36 @@ import FilterSelect from "../Filter/FilterSelect.vue";
 import FilterSale from "../Filter/FilterSale.vue";
 export default {
   name: "aside-filter",
+  data() {
+    return {
+      available: [],
+      isSale: "",
+      price: 0,
+      speed: 0,
+      engine: 0,
+      engine_hp: 0,
+      brand: [],
+      title: "",
+      country: [],
+      model: [],
+    };
+  },
+  methods: {
+    filter() {
+      console.log(
+        this.available,
+        this.isSale,
+        this.price,
+        this.speed,
+        this.engine,
+        this.engine_hp,
+        this.brand,
+        this.title,
+        this.country,
+        this.model
+      );
+    },
+  },
   components: { FilterSelect, FilterSale },
 };
 </script>

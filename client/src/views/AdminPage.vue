@@ -4,7 +4,7 @@
 
     <form @submit.prevent="submitForm" enctype="multipart/form-data">
       <fieldset>
-        <legend>Создать продукт:</legend>
+        <legend>Создать / Редактировать продукт:</legend>
 
         <div>
           <select name="product" @change="selectProduct" v-model="select">
@@ -120,15 +120,25 @@
         </div>
 
         <div>
-          <span>Аватар</span>
+          <span>Избражение</span>
           <input ref="file" type="file" name="product" @change="setImage" />
         </div>
 
         <div class="form-btn">
-          <button type="submit" class="btn" @click="type = 'create'">
+          <button
+            type="submit"
+            class="btn"
+            @click="type = 'create'"
+            :disabled="isLoading"
+          >
             Создать
           </button>
-          <button type="submit" class="btn" @click="type = 'edit'">
+          <button
+            type="submit"
+            class="btn"
+            @click="type = 'edit'"
+            :disabled="isLoading"
+          >
             Изменить
           </button>
         </div>
@@ -175,6 +185,7 @@ export default {
     return {
       type: null,
       select: "Выберите товар",
+      isLoading: false,
 
       removeSelect: "Выберите товар",
       removeProductId: null,
@@ -200,6 +211,7 @@ export default {
   },
   methods: {
     async submitForm() {
+      this.isLoading = true;
       let file = this.$refs.file.files[0];
       let fd = new FormData();
       fd.append("product", file);
@@ -242,14 +254,17 @@ export default {
         this.$store.commit("setProducts", data.products);
         this.select = this.productName;
       }
+
+      this.isLoading = false;
     },
     async removeProduct() {
+      this.isLoading = true;
       const { data } = await axios.post("/admin/remove", {
         id: this.removeProductId,
       });
-
       console.log(data);
       this.$store.commit("setProducts", data.products);
+      this.isLoading = false;
     },
     selectProduct() {
       const products = this.$store.getters.getProducts;

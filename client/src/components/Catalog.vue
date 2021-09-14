@@ -22,7 +22,16 @@ import AsideFilter from "../components/Filter/AsideFilter.vue";
 import CatalogItem from "../components/CatalogItem.vue";
 
 export default {
-  props: ["products"],
+  mounted() {
+    this.$store.dispatch("getProducts");
+  },
+  computed: {
+    products() {
+      const products = this.$store.getters.getProducts;
+      if (!products) return [];
+      return products.filter((p) => p.category === "product");
+    },
+  },
   components: {
     AsideFilter,
     CatalogItem,

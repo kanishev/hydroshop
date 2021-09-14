@@ -14,6 +14,8 @@
           :type="type"
           :name="type == 'radio' && title"
           :id="field"
+          :value="field"
+          @input="$emit('input', $event.target.value)"
         />
         <label
           :class="`${type}__label aside-filter__content-label`"
@@ -32,7 +34,7 @@
 
 <script>
 export default {
-  props: ["type", "fields", "title"],
+  props: ["type", "fields", "title", "model"],
   name: "app-filter",
 };
 </script>

@@ -27,6 +27,13 @@
           <input
             class="range-input"
             value="10"
+            v-model="valueMin"
+            @input="
+              $emit('input', [
+                Number.parseInt(valueMin),
+                Number.parseInt(valueMax),
+              ])
+            "
             min="1"
             max="500"
             step="1"
@@ -35,6 +42,13 @@
           <input
             class="range-input"
             value="150"
+            v-model="valueMax"
+            @input="
+              $emit('input', [
+                Number.parseInt(valueMin),
+                Number.parseInt(valueMax),
+              ])
+            "
             min="1"
             max="500"
             step="1"
@@ -50,8 +64,15 @@
 import { rangeStart } from "../../utils/range";
 
 export default {
+  props: ["model"],
   mounted() {
     rangeStart();
+  },
+  data() {
+    return {
+      valueMin: 30,
+      valueMax: 150,
+    };
   },
   name: "app-range",
 };
