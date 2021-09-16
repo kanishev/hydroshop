@@ -74,15 +74,20 @@ export default {
       const toggled = this.$refs.favourite.classList.contains(
         "product-item__favourite--active"
       );
-
-      if (toggled) {
-        await axios.post("/favourite/remove", { id });
-        user.favour.items = user.favour.items.filter((p) => p.productId !== id);
-        this.$store.commit("setUser", Object.assign({}, user));
+      if (user.role == "NOT_AUTH") {
+        this.$router.push("/auth");
       } else {
-        await axios.post("/favourite/add", { id });
-        user.favour.items.push({ productId: id });
-        this.$store.commit("setUser", Object.assign({}, user));
+        if (toggled) {
+          await axios.post("/favourite/remove", { id });
+          user.favour.items = user.favour.items.filter(
+            (p) => p.productId !== id
+          );
+          this.$store.commit("setUser", Object.assign({}, user));
+        } else {
+          await axios.post("/favourite/add", { id });
+          user.favour.items.push({ productId: id });
+          this.$store.commit("setUser", Object.assign({}, user));
+        }
       }
     },
   },

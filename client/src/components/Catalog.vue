@@ -1,10 +1,13 @@
 <template>
   <div class="catalog__inner">
-    <aside-filter></aside-filter>
+    <aside-filter
+      :products="products"
+      @filter="(p) => updateProduct(p)"
+    ></aside-filter>
 
     <div class="catalog__inner-list">
       <catalog-item
-        v-for="product in products"
+        v-for="product in producto"
         :key="product.id"
         :product="product"
       >
@@ -22,14 +25,25 @@ import AsideFilter from "../components/Filter/AsideFilter.vue";
 import CatalogItem from "../components/CatalogItem.vue";
 
 export default {
-  mounted() {
-    this.$store.dispatch("getProducts");
+  props: ["products"],
+  data() {
+    return {
+      copy: this.products,
+      filtered: [],
+    };
   },
   computed: {
-    products() {
-      const products = this.$store.getters.getProducts;
-      if (!products) return [];
-      return products.filter((p) => p.category === "product");
+    producto() {
+      if (this.filtered.length == 0) {
+        return this.products;
+      } else {
+        return this.filtered;
+      }
+    },
+  },
+  methods: {
+    updateProduct(p) {
+      this.filtered = p;
     },
   },
   components: {

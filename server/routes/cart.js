@@ -26,6 +26,7 @@ router.post("/add", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const user = await req.user.populate("cart.items.productId").execPopulate();
+  user.cart.items = user.cart.items.filter(p => p.productId !== null);
   const cart = mapCartProducts(user.cart);
   return res.json(cart);
 });

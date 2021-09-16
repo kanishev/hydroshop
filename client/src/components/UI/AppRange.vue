@@ -9,24 +9,23 @@
           <input
             class="number-input"
             type="number"
-            value="10"
+            :value="model[0]"
             min="0"
-            max="500"
+            max="1000000"
           />
           to
           <input
             class="number-input"
             type="number"
-            value="50"
+            :value="model[1]"
             min="0"
-            max="500"
+            max="1000000"
           />
         </div>
 
         <div class="range-group">
           <input
             class="range-input"
-            value="10"
             v-model="valueMin"
             @input="
               $emit('input', [
@@ -35,13 +34,12 @@
               ])
             "
             min="1"
-            max="500"
+            max="1000000"
             step="1"
             type="range"
           />
           <input
             class="range-input"
-            value="150"
             v-model="valueMax"
             @input="
               $emit('input', [
@@ -50,7 +48,7 @@
               ])
             "
             min="1"
-            max="500"
+            max="1000000"
             step="1"
             type="range"
           />
@@ -70,8 +68,8 @@ export default {
   },
   data() {
     return {
-      valueMin: 30,
-      valueMax: 150,
+      valueMin: this.model[0],
+      valueMax: this.model[1],
     };
   },
   name: "app-range",
@@ -97,7 +95,7 @@ export default {
   color: #2f3035;
 }
 .range-slider .number-group .number-input {
-  width: 36px;
+  width: 80px;
   height: 30px;
   text-align: center;
   color: #fff;

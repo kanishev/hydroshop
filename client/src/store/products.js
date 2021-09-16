@@ -7,6 +7,7 @@ export default {
   },
   mutations: {
     setProducts(state, products) {
+      console.log(products)
       state.products = products;
     },
   },

@@ -43,22 +43,67 @@
         <div>
           <label for="brand">Бренд продукта:</label>
           <select id="brand" name="brand" v-model="productBrand">
-            <optgroup label="brand">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </optgroup>
+            <option value="BRP">BRP</option>
+            <option value="Spark 2">Spark 2</option>
+            <option value="Spark 3">Spark 3</option>
           </select>
         </div>
 
         <div>
-          <label for="brand">Категория продукта:</label>
-          <select id="brand" name="brand" v-model="productCategory">
-            <optgroup label="brand">
-              <option value="product">Продукт</option>
-              <option value="popular">Популярное</option>
-              <option value="additional">Дополнительный</option>
-            </optgroup>
+          <label for="model">Модель продукта:</label>
+          <select id="model" name="model" v-model="productModel">
+            <option value="Модель 1">Модель 1</option>
+            <option value="Модель 2">Модель 2</option>
+            <option value="Модель 3">Модель 3</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="country">Страна производитель:</label>
+          <select id="country" name="country" v-model="productCountry">
+            <option value="CША">CША</option>
+            <option value="Россия">Россия</option>
+            <option value="Германия 3">Германия</option>
+            <option value="Китай">Китай</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="engine">Мощность:</label>
+          <select id="engine" name="engine" v-model="productEngine">
+            <option value="CША">90</option>
+            <option value="Россия">130</option>
+            <option value="Германия 3">154</option>
+            <option value="Китай">230</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="engine_hp">Мощность двигателя л.с:</label>
+          <select id="engine_hp" name="engine_hp" v-model="productEngine_hp">
+            <option value="20">20</option>
+            <option value="60">60</option>
+            <option value="100">100</option>
+            <option value="120">120</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="speed">Максимальная скорость:</label>
+          <select id="speed" name="speed" v-model="productSpeed">
+            <option value="60">60</option>
+            <option value="110">110</option>
+            <option value="160">160</option>
+            <option value="180">180</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="category">Категория продукта:</label>
+          <select id="category" name="category" v-model="productCategory">
+            <option value="product">Продукт</option>
+            <option value="popular">Популярное</option>
+            <option value="additional">Дополнительный</option>
           </select>
         </div>
 
@@ -199,6 +244,11 @@ export default {
       productImage: "",
       productId: "",
       productCategory: "",
+      productModel: "",
+      productCountry: "",
+      productEngine: "",
+      productEngine_hp: "",
+      productSpeed: "",
 
       removeName: "",
     };
@@ -225,6 +275,10 @@ export default {
         available: this.productAvailable === "available" ? true : false,
         img: this.productImage,
         id: this.productId,
+        engine: Number.parseInt(this.productEngine),
+        engine_hp: Number.parseInt(this.productEngine_hp),
+        speed: Number.parseInt(this.productSpeed),
+        country: this.productCountry,
         category: this.productCategory,
       });
 
@@ -248,6 +302,11 @@ export default {
           available: this.productAvailable,
           img: this.productImage,
           price: this.productPrice,
+          engine: this.productEngine,
+          engine_hp: this.productEngine_hp,
+          speed: this.productSpeed,
+          country: this.productCountry,
+          category: this.productCategory,
         });
         this.$store.commit("setProducts", products);
       } else {
@@ -274,6 +333,8 @@ export default {
       this.productPrice = product.price;
       this.productRate = product.rate;
       this.productBrand = product.brand;
+      this.productModel = product.model;
+      this.productCategory = product.category;
       this.productSale = product.sale == true ? "sale" : "primary";
       this.productAvailable =
         product.available == true ? "available" : "notAvailable";

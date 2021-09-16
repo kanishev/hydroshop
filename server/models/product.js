@@ -38,6 +38,26 @@ const product = new Schema({
     type: String,
     default: 'product'
   },
+  model: {
+    type: String,
+    default: 'Модель 1'
+  },
+  country: {
+    type: String,
+    default: 'США',
+  },
+  speed: {
+    type: Number,
+    default: 60
+  },
+  engine: {
+    type: Number,
+    default: 90
+  },
+  engine_hp: {
+    type: Number,
+    default: 20
+  },
   info: {
     type: Object,
     default: Object,

@@ -5,7 +5,7 @@
       <slot></slot>
 
       <div
-        class="checkbox aside-filter__content-box"
+        class="aside-filter__content-box"
         v-for="field in fields"
         :key="field"
       >

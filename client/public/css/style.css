@@ -427,6 +427,7 @@ table td {
 
 .tabs-content.tabs-content--active, .additional__content.additional__content--active{
   display: block;
+  padding-right: 15px;
 }
 
 .search__content-form {
@@ -924,7 +925,7 @@ button.catalog__filter-btn_line {
 }
 
 .catalog__inner-list .product-item__wrapper {
-  margin: 0 5px;
+  margin: 0 5px 5px 0;
 }
 
 .pagination {

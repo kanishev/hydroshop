@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <Catalog />
+      <Catalog :products="products" />
 
       <Pagination />
     </div>
@@ -41,6 +41,17 @@ import Pagination from "../components/Pagination.vue";
 import Catalog from "../components/Catalog.vue";
 
 export default {
+  mounted() {
+    this.$store.dispatch("getProducts");
+  },
+  computed: {
+    products() {
+      const products = this.$store.getters.getProducts;
+      if (!products) return [];
+      console.log(products);
+      return products.filter((p) => p.category === "product");
+    },
+  },
   components: { Pagination, Catalog },
 };
 </script>

@@ -60,11 +60,8 @@ router.get('/', async (req, res) => {
 
     try{
        const user = await req.user.populate('favour.items.productId').execPopulate()
-
-       console.log(user.favour)
+       user.favour.items = user.favour.items.filter((f) => f.productId !== null)
        const products = toGood(user.favour)
-
-
 
        return res.json({products, message: {
         value: 'Товар удален из избранного',

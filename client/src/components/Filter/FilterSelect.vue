@@ -6,12 +6,11 @@
         class="filter-style filter__item-list_select"
         name=""
         id=""
-        @change="$emit('change', $event.target.value)"
+        @change="$emit('change', Number.parseInt($event.target.value))"
       >
-        <option>90</option>
-        <option>130</option>
-        <option>154</option>
-        <option>230</option>
+        <option v-for="value in values" :key="value" :value="value">
+          {{ value }}
+        </option>
       </select>
     </div>
   </div>
@@ -19,6 +18,6 @@
 
 <script>
 export default {
-  props: ["title", "model"],
+  props: ["title", "values"],
 };
 </script>
