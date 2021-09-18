@@ -9,8 +9,6 @@ function mountScript() {
   let tabs = document.querySelectorAll(".tab");
   let tabsContents = document.querySelectorAll(".tabs-content");
 
-  console.log(tabsContents)
-
   function myTabClicks(e) {
     e.preventDefault();
 

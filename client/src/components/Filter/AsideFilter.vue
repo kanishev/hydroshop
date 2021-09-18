@@ -32,11 +32,9 @@
               :model="available"
               @input="
                 (v) =>
-                  available.includes(v)
-                    ? (available = available.filter((p) => p !== v))
-                    : available.push(v)
+                  v == 'В наличии' ? (available = true) : (available = false)
               "
-              type="checkbox"
+              type="radio"
               :fields="['В наличии', 'под заказ']"
               title="Наличие"
             ></app-filter>
@@ -144,7 +142,7 @@ export default {
   props: ["products"],
   data() {
     return {
-      available: [],
+      available: true,
       isSale: false,
       price: [10000, 500000],
       speed: 0,
@@ -165,6 +163,12 @@ export default {
         .filter((p) => p.price >= this.price[0] && p.price <= this.price[1])
         .filter((p) => p.title.includes(this.title))
         .filter((p) => (this.isSale == true ? p.sale == this.isSale : products))
+        .filter((p) =>
+          this.available == false
+            ? p.available == this.available
+            : p.available == true
+        )
+
         .filter((p) => {
           if (this.speed == 0) {
             return products;
@@ -209,14 +213,13 @@ export default {
         });
 
       console.log(products);
-      if (products.length == this.products.length || products.length == 0) {
+      if (products.length == 0) {
         this.$store.commit("setMessage", {
           value: "Товары с такими характеристиками не найдены",
           type: "warn",
         });
-      } else {
-        this.$emit("filter", products);
       }
+      this.$emit("filter", products);
     },
     resetFilter() {
       this.available = [];

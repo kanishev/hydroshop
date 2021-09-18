@@ -163,7 +163,6 @@ import mountScript from "../utils/tabs";
 
 export default {
   updated() {
-    console.log("h");
     mountScript();
   },
   computed: {

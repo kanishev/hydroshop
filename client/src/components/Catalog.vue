@@ -7,7 +7,7 @@
 
     <div class="catalog__inner-list">
       <catalog-item
-        v-for="product in producto"
+        v-for="product in productItems"
         :key="product.id"
         :product="product"
       >
@@ -33,7 +33,7 @@ export default {
     };
   },
   computed: {
-    producto() {
+    productItems() {
       if (this.filtered.length == 0) {
         return this.products;
       } else {

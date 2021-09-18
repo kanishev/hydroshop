@@ -15,6 +15,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser(state, user) {
+      console.log(user)
       state.user = user;
       localStorage.setItem("user", JSON.stringify(user));
     },
@@ -63,10 +64,10 @@ export default new Vuex.Store({
   },
   getters: {
     getUser(state) {
-
       if(!state.user){
         return JSON.parse(localStorage.getItem('user'));
       }
+      console.log(state.user)
       return state.user;
     },
     getMessage(state){

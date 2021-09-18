@@ -901,7 +901,6 @@ button.catalog__filter-btn_line {
 
 .catalog__inner {
   display: flex;
-  justify-content: space-between;
 }
 
 .catalog__filter-mode {
@@ -913,7 +912,7 @@ button.catalog__filter-btn_line {
 }
 
 .catalog__inner-aside {
-  max-width: 330px;
+  width: 330px;
 }
 
 .catalog__inner-list {
@@ -921,12 +920,8 @@ button.catalog__filter-btn_line {
   justify-content: space-between;
   flex-wrap: wrap;
   height: fit-content;
-  margin: 0 -5px;
 }
 
-.catalog__inner-list .product-item__wrapper {
-  margin: 0 5px 5px 0;
-}
 
 .pagination {
   width: 100%;

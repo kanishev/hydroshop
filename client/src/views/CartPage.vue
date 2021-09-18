@@ -55,7 +55,7 @@ export default {
       await axios.post("/cart/add", { id });
 
       user.cart.items = this.cart;
-      this.$store.commit("setUser", Object.assign({}, user));
+      this.$store.commit("setUser", user);
     },
     async removeProduct(id, exact) {
       let user = this.$store.getters.getUser;
@@ -67,7 +67,7 @@ export default {
         await axios.post("/cart/remove", { id, exact });
 
         user.cart.items = this.cart;
-        this.$store.commit("setUser", Object.assign({}, user));
+        this.$store.commit("setUser", user);
       } else {
         this.cart = this.cart.map((p) => {
           if (p.id == id) {
@@ -80,7 +80,7 @@ export default {
         await axios.post("/cart/remove", { id });
 
         user.cart.items = this.cart;
-        this.$store.commit("setUser", Object.assign({}, user));
+        this.$store.commit("setUser", user);
       }
     },
   },

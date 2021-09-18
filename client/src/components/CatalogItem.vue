@@ -65,7 +65,7 @@ export default {
 
       user.cart = data.cart;
 
-      this.$store.commit("setUser", Object.assign({}, user));
+      this.$store.commit("setUser", user);
       this.$store.commit("setMessage", data.message);
     },
     async toggleFavourite(id) {
@@ -82,11 +82,11 @@ export default {
           user.favour.items = user.favour.items.filter(
             (p) => p.productId !== id
           );
-          this.$store.commit("setUser", Object.assign({}, user));
+          this.$store.commit("setUser", user);
         } else {
           await axios.post("/favourite/add", { id });
           user.favour.items.push({ productId: id });
-          this.$store.commit("setUser", Object.assign({}, user));
+          this.$store.commit("setUser", user);
         }
       }
     },
