@@ -1,6 +1,6 @@
 # 🛒 Hydroshop 🚤
 
-## Project implementation
+**Project implementation:**
 
 - log in / log out this app via user or admin
 - admin page
